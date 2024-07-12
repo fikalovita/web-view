@@ -9,8 +9,5 @@ class Auth extends BaseController
     {
         return view('login');
     }
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
+
 }
