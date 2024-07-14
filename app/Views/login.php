@@ -18,14 +18,14 @@
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
-        </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
+                <div class="text-center">
+                    <img src="/img/rsi-logo.jpg" alt="logo-rsi" width="60px" class="mb-3">
+                    <h4><b>RUMAH SAKIT ISLAM LUMAJANG</b></h4>
+                </div>
                 <p class="login-box-msg">Sign in to start your session</p>
-
                 <form action="../../index3.html" method="post">
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" placeholder="Email">
