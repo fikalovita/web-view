@@ -12,11 +12,13 @@
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-kunjungan" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Riwayat Kunjungan</button>
-                        <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                        <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+                        <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Riwayat S.O.A.P.I.E</button>
+                        <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Riwayat S.B.A.R</button>
                     </div>
                 </nav>
+
                 <div class="tab-content" id="nav-tabContent">
+                    <!-- Riwayat Kunjungan -->
                     <div class="tab-pane fade show active" id="nav-kunjungan" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="card">
                             <div class="card-body">
@@ -49,8 +51,111 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+                    <!-- End Riwayat Kunjungan -->
+                    <!-- Riwayat SOAPIE -->
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-bordered table-responsive-lg table-sm">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Tgl.Reg</th>
+                                            <th scope="col">No.Rawat</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col" class="text-center">S.O.A.P.I.E</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>
+                                                <table class="table table-bordered table-responsive-lg table-sm">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Dokter/Paramedis</th>
+                                                            <th scope="col">Subjek</th>
+                                                            <th scope="col">Objek</th>
+                                                            <th scope="col">Asesmen</th>
+                                                            <th scope="col">Plan</th>
+                                                            <th scope="col">Instruksi</th>
+                                                            <th scope="col">Evaluasi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
+                                                            <td>@mdo</td>
+                                                            <td>@mdo</td>
+                                                            <td>@mdo</td>
+                                                            <td>@mdo</td>
+                                                            <td>@mdo</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Riwayat SOAPIE -->
+                    <!-- Riwayat SBAR -->
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-bordered table-responsive-lg table-sm">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Tgl.Reg</th>
+                                            <th scope="col">No.Rawat</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col" class="text-center">S.B.A.R</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>
+                                                <table class="table table-bordered table-responsive-lg table-sm">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Dokter/Paramedis</th>
+                                                            <th scope="col">Situation</th>
+                                                            <th scope="col">Background</th>
+                                                            <th scope="col">Asesment</th>
+                                                            <th scope="col">Recomendation</th>
+                                                            <th scope="col">Instruksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
+                                                            <td>@mdo</td>
+                                                            <td>@mdo</td>
+                                                            <td>@mdo</td>
+                                                            <td>@mdo</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Riwayat SBAR -->
                 </div>
             </div>
         </div>
