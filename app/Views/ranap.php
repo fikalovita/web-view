@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6">
-                                 <h5 class="card-title">Data Pasien Rawat Jalan</h5>
+                                <h5 class="card-title">Data Pasien Rawat Inap </h5>
                             </div>
                             <div class="col-sm-6">
                                 <form action="" class="form-inline">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <table class="table table-responsive-lg table-bordered table-sm mt-3">
-                            <thead>
+                            <thead class="thead-light">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">No.Rawat</th>
