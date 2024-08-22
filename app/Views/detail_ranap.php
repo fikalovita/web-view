@@ -221,7 +221,7 @@
                                             <th scope="col">Tgl.Reg</th>
                                             <th scope="col">No.Rawat</th>
                                             <th scope="col">Status</th>
-                                            <th scope="col" class="text-center">Diagnosa</th>
+                                            <th scope="col" class="text-center">Laboratorium</th>
                                         </tr>
                                     </thead>
                                     <tbody>
