@@ -4,4 +4,11 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class M_riwayat_ranap extends Model {}
+class M_riwayat_ranap extends Model
+{
+
+    function getRanap()
+    {
+       
+    }
+}
