@@ -26,7 +26,7 @@
                                 </form>
                             </div> -->
                         </div>
-                        <table class="table table-responsive-lg table-bordered table-sm mt-3" id="riwayat_ranap">
+                        <table class="table table-responsive-lg table-bordered table-sm table-hover mt-3" id="riwayat_ranap">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">#</th>
