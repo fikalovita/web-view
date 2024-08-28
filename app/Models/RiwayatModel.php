@@ -19,5 +19,6 @@ class RiwayatModel extends Model
         $builder->limit(5);
         $query = $builder->get();
         return $query;
+        //tes
     }
 }
