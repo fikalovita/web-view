@@ -9,7 +9,7 @@ class RiwayatModel extends Model
     function getRanap()
     {
         $builder = $this->db->table('kamar_inap');
-        $builder->select('kamar_inap.no_rawat,bangsal.nm_bangsal,reg_periksa.no_rkm_medis, pasien.nm_pasien, dokter.nm_dokter');
+        $builder->select('kamar_inap.no_rawat,bangsal.nm_bangsal,reg_periksa.no_rkm_medis, pasien.nm_pasien, dokter.nm_dokter,kamar_inap.stts_pulang');
         $builder->join('reg_periksa', 'kamar_inap.no_rawat=reg_periksa.no_rawat', 'inner');
         $builder->join('pasien', 'reg_periksa.no_rkm_medis=pasien.no_rkm_medis', 'inner');
         $builder->join('dpjp_ranap', 'reg_periksa.no_rawat=dpjp_ranap.no_rawat', 'inner');
