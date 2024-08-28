@@ -92,7 +92,7 @@
                     <div class="tab-pane fade show active" id="nav-kunjungan" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm">
+                                <table class="table table-bordered table-responsive-lg table-sm" id="riwayat_ranap">
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col">No</th>

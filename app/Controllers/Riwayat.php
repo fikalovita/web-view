@@ -20,9 +20,10 @@ class Riwayat extends BaseController
     {
         $RiwayatModel = new RiwayatModel();
         $data_inap = $RiwayatModel->getRanap()->getResultArray();
-        dd($data_inap);
+        // dd($data_inap);
         $data = [
-            'title' => 'Pasien Rawat Inap'
+            'title' => 'Pasien Rawat Inap',
+            'data_inap' => $data_inap
         ];
 
         return view('ranap', $data);
