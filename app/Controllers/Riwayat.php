@@ -2,19 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\M_riwayat_ranap;
+use App\Models\RiwayatModel;
 
 class Riwayat extends BaseController
 {
-    protected $pasien;
-    function __construct()
-    {
-        $pasien = new M_riwayat_ranap();
-    }
 
     public function ralan()
     {
-       
+
         $data = [
             'title' => 'Pasien Rawat Jalan'
         ];
@@ -23,10 +18,13 @@ class Riwayat extends BaseController
     }
     public function ranap()
     {
+        $RiwayatModel = new RiwayatModel();
+        $data_inap = $RiwayatModel->getRanap()->getResultArray();
+        dd($data_inap);
         $data = [
             'title' => 'Pasien Rawat Inap'
         ];
 
-        return view('ralan', $data);
+        return view('ranap', $data);
     }
 }

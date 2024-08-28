@@ -33,10 +33,11 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">No.Rawat</th>
-                                    <th scope="col">Nama Dokter</th>
+                                    <th scope="col">Nama Dokter/DPJP</th>
                                     <th scope="col">NO.RM</th>
                                     <th scope="col">Nama Pasien</th>
-                                    <th scope="col">Poliklinik</th>
+                                    <th scope="col">Kamar</th>
+                                    <th scope="col">Status Pulang</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -45,6 +46,8 @@
                                     <th scope="row">1</th>
                                     <td>Mark</td>
                                     <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
                                     <td>@mdo</td>
                                     <td>@mdo</td>
                                     <td>@mdo</td>
