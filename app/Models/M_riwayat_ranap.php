@@ -6,9 +6,5 @@ use CodeIgniter\Model;
 
 class M_riwayat_ranap extends Model
 {
-
-    function getRanap()
-    {
-       
-    }
+    function getRanap() {}
 }
