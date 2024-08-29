@@ -138,6 +138,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
         </footer>
     </div>
+    <script>
+        new DataTable('#riwayat_ranap', {
+            'processing': true,
+            'serverSide': true,
+            'order': [],
+            'ajax': {
+                'url': '<?= base_url('riwayat/ranapAjax') ?>',
+                'type': 'POST'
+            }
+
+        });
+    </script>
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
@@ -150,9 +162,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/dist/js/datepicker.js"></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> -->
-    <script>
-        new DataTable('#riwayat_ranap');
-    </script>
+
 </body>
 
 </html>
