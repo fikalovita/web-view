@@ -19,6 +19,7 @@ class RiwayatModel extends Model
         // $builder->limit(5);
         $query = $builder->get();
         return $query;
+        //tes
     }
 
     function RanapAjax($keyword = null, $tgl1 = null, $tgl2 = null, $start = 0, $length = 0)
