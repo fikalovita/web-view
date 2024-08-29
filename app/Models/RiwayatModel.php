@@ -19,10 +19,9 @@ class RiwayatModel extends Model
         // $builder->limit(5);
         $query = $builder->get();
         return $query;
-        
     }
 
-    function RanapAjax($keyword = null, $tgl1 = null, $tgl2 = null, $start = 0, $length = 0)
+    function RanapAjax($keyword = NULL, $tgl1 = NULL, $tgl2 = null, $start = 0, $length = 0)
     {
         $where = "kamar_inap.tgl_masuk BETWEEN '$tgl1' AND '$tgl2' ";
         $builder = $this->db->table('kamar_inap');

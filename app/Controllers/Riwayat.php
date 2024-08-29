@@ -35,16 +35,12 @@ class Riwayat extends BaseController
         $start = isset($_REQUEST['start']) ? $_REQUEST['start'] : '';
         $length = isset($_REQUEST['length']) ? $_REQUEST['length'] : '';
         $search_value = isset($_REQUEST['search']['value']) ? $_REQUEST['search']['value'] : '';
+        $tgl1 = isset($_GET['tgl1']) ? $_GET['tgl1'] : '';
+        $tgl2 = isset($_GET['tgl2']) ? $_GET['tgl2'] : '';
         $RiwayatModel = new RiwayatModel();
         $data = [];
-        $tgl1 = $this->request->getGet('tgl1', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $tgl2 = $this->request->getGet('tgl2', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        dd($tgl1);
-        // if () {
-        //     # code...
-        // }
         $data_inap = $RiwayatModel->RanapAjax($search_value, $tgl1, $tgl2, $start, $length);
+        dd($data_inap);
         foreach ($data_inap as $value) {
             $btn_riwayat = '<a href="#" >Riwayat </a>';
             $row = [];
