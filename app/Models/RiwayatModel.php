@@ -44,11 +44,11 @@ class RiwayatModel extends Model
     function RalanAjax($keyword = null, $start = 0, $length = 0)
     {
         $builder = $this->db->table('reg_periksa');
-        $builder->select('reg_periksa.no_rawat, reg_periksa.tgl_registrasi,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,dokter.nm_dokter,reg_periksa.status_poli,reg_periksa.status_poli');
+        $builder->select('reg_periksa.no_rawat, reg_periksa.tgl_registrasi,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,dokter.nm_dokter,reg_periksa.status_poli,reg_periksa.stts');
         $builder->join('pasien', 'reg_periksa.no_rkm_medis=pasien.no_rkm_medis', 'inner');
         $builder->join('dokter', 'reg_periksa.kd_dokter=dokter.kd_dokter', 'inner');
         $builder->join('poliklinik', 'reg_periksa.kd_poli=poliklinik.kd_poli');
-        $builder->where('reg_periksa', 'Ralan');
+        $builder->where('reg_periksa.status_lanjut', 'Ralan');
 
         if ($keyword) {
             $arr_keyword = explode(" ", $keyword);
@@ -58,7 +58,16 @@ class RiwayatModel extends Model
                 $builder->orlike('reg_periksa.no_rkm_medis', $arr_keyword[$i]);
                 $builder->orLike('pasien.nm_pasien', $arr_keyword[$i]);
                 $builder->orLike('poliklinik.nm_poli', $keyword[$i]);
+                $builder->orLike('dokter.nm_dokter', $keyword[$i]);
+                $builder->orLike('reg_periksa.status_poli', $keyword[$i]);
+                $builder->orLike('reg_periksa.stts', $keyword[$i]);
             }
         }
+
+        if ($start != 0 or $length != 0) {
+            $builder->limit($length, $start);
+        }
+
+        return $builder->orderBy('reg_periksa.no_rawat')->get()->getResult();
     }
 }

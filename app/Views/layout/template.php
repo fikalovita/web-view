@@ -138,13 +138,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
         </footer>
     </div>
+    <!-- datatable riwayat rawat inap -->
     <script>
         new DataTable('#riwayat_ranap', {
             'processing': true,
             'serverSide': true,
             'order': [],
             'ajax': {
-                'url': '<?= base_url('riwayat/ranapAjax') ?>',
+                'url': '<?= base_url('Data_riwayat/ranapAjax') ?>',
+                'type': 'POST'
+            }
+
+        });
+    </script>
+    <!-- datatable data riwayat rawat jalan -->
+    <script>
+        new DataTable('#riwayat_ralan', {
+            'processing': true,
+            'serverSide': true,
+            'order': [],
+            'ajax': {
+                'url': '<?= base_url('Data_riwayat/ralanAjax') ?>',
                 'type': 'POST'
             }
 

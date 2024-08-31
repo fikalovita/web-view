@@ -28,28 +28,20 @@
                                 </form>
                             </div>
                         </div>
-                        <table class="table table-responsive-lg table-bordered table-sm mt-3">
+                        <table class="table table-responsive-lg table-bordered table-hover table-sm mt-3" id="riwayat_ralan">
                             <thead class="thead-light">
-                                <th scope="col">#</th>
+                                <!-- <th scope="col">#</th> -->
                                 <th scope="col">No.Rawat</th>
                                 <th scope="col">Nama Dokter</th>
                                 <th scope="col">NO.RM</th>
                                 <th scope="col">Nama Pasien</th>
+                                <th scope="col">Nama Pasien</th>
+                                <th scope="col">Status Poli</th>
+                                <th scope="col">Status Periksa</th>
                                 <th scope="col">Poliklinik</th>
                                 <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td class="text-center"><button class="btn btn-success btn-sm">Riwayat</button></td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div><!-- /.card -->
