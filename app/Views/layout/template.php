@@ -15,10 +15,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.bootstrap4.js"></script>
+
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.5.3/css/dataTables.dateTime.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
 
@@ -138,32 +140,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
         </footer>
     </div>
-    <!-- datatable riwayat rawat inap -->
-    <script>
-        new DataTable('#riwayat_ranap', {
-            'processing': true,
-            'serverSide': true,
-            'order': [],
-            'ajax': {
-                'url': '<?= base_url('Data_riwayat/ranapAjax') ?>',
-                'type': 'POST'
-            }
-
-        });
-    </script>
-    <!-- datatable data riwayat rawat jalan -->
-    <script>
-        new DataTable('#riwayat_ralan', {
-            'processing': true,
-            'serverSide': true,
-            'order': [],
-            'ajax': {
-                'url': '<?= base_url('Data_riwayat/ralanAjax') ?>',
-                'type': 'POST'
-            }
-
-        });
-    </script>
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
@@ -174,9 +150,67 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.min.js"></script>
     <script src="/dist/js/datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.5.3/js/dataTables.dateTime.min.js"></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> -->
+    <script>
+        let minDate, maxDate;
 
+        // Custom filtering function which will search data in column four between two values
+        DataTable.ext.search.push(function(settings, data, dataIndex) {
+            let min = minDate.val();
+            let max = maxDate.val();
+            let date = new Date(data[1]);
+
+            if (
+                (min === null && max === null) ||
+                (min === null && date <= max) ||
+                (min <= date && max === null) ||
+                (min <= date && date <= max)
+            ) {
+                return true;
+            }
+            return false;
+        });
+
+        // Create date inputs
+        minDate = new DateTime('#min', {
+            format: 'mm dd YYYY'
+        });
+        maxDate = new DateTime('#max', {
+            format: 'mm dd YYYY'
+        });
+
+        // DataTables initialisation
+        let table = new DataTable('#riwayat_ranap', {
+            'processing': true,
+            'serverSide': true,
+            'order': [],
+            'ajax': {
+                'url': '<?= base_url('data_riwayat/ranapAjax') ?>',
+                'type': 'POST'
+            }
+
+        });
+
+        // Refilter the table
+        document.querySelectorAll('#min, #max').forEach((el) => {
+            el.addEventListener('change', () => table.draw());
+        });
+    </script>
+    <script>
+        new DataTable('#riwayat_ralan', {
+            'processing': true,
+            'serverSide': true,
+            'order': [],
+            'ajax': {
+                'url': '<?= base_url('data_riwayat/ralanAjax') ?>',
+                'type': 'POST'
+            }
+
+        });
+    </script>
 </body>
 
 </html>

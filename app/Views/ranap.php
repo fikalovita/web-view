@@ -10,20 +10,20 @@
                             <div class="col-sm-6">
                             </div>
                             <div class="col-sm-6">
-                                <form action="<?= base_url('riwayat/ranapAjax') ?>" class="form-inline" method="GET">
+                                <form action="#" class="form-inline" method="GET">
                                     <div class="form-group row mr-2">
                                         <div class="col-2">
-                                            <input type="date" class="form-control form-control-sm" id="datepicker" name="tgl1">
+                                            <input type="text" id="max" name="max" class="dt-datetime">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-2">
-                                            <input id="datepicker2" type="date" class="form-control form-control-sm" name="tgl2">
+                                            <input type="text" id="min" name="min" class="dt-datetime" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <!-- <div class="col-2">
                                         <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-filter"></i></button>
-                                    </div>
+                                    </div> -->
                                 </form>
                             </div>
                         </div>
@@ -42,7 +42,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                             </tbody>
                         </table>
                     </div>

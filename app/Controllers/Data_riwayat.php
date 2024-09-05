@@ -15,14 +15,14 @@ class Data_riwayat extends BaseController
         $search_value = isset($_REQUEST['search']['value']) ? $_REQUEST['search']['value'] : '';
         $RiwayatModel = new RiwayatModel();
         $data = [];
-        // $tgl1 = $this->request->getGet('tgl1');
-        // $tgl2 = $this->request->getGet('tgl2');
+        $tgl1 = $this->request->getGet('tgl1');
+        $tgl2 = $this->request->getGet('tgl2');
         // dd($tgl1);
         // if () {
         //     # code...
         // }
         // $date = [$tgl1, $tgl2];
-        $data_inap = $RiwayatModel->RanapAjax($search_value, $start, $length);
+        $data_inap = $RiwayatModel->RanapAjax($search_value, (int) $start, (int) $length);
         foreach ($data_inap as $value) {
             $btn_riwayat = '<a href="#" >Riwayat </a>';
             $row = [];
