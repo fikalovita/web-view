@@ -4,51 +4,32 @@ namespace App\Controllers;
 
 use App\Models\RiwayatModel;
 
-
+use CodeIgniter\RESTful\ResourceController;
 class Data_riwayat extends BaseController
 {
     function ranapAjax()
     {
-        $param['draw'] = isset($_REQUEST['draw']) ? $_REQUEST['draw'] : '';
-        $start = isset($_REQUEST['start']) ? $_REQUEST['start'] : '';
-        $length = isset($_REQUEST['length']) ? $_REQUEST['length'] : '';
-        $search_value = isset($_REQUEST['search']['value']) ? $_REQUEST['search']['value'] : '';
         $RiwayatModel = new RiwayatModel();
-        $data = [];
-        $tgl1 = $this->request->getGet('tgl1');
-        $tgl2 = $this->request->getGet('tgl2');
-        // dd($tgl1);
-        // if () {
-        //     # code...
-        // }
-        // $date = [$tgl1, $tgl2];
-        $data_inap = $RiwayatModel->RanapAjax($search_value, (int) $start, (int) $length);
-        foreach ($data_inap as $value) {
-            $btn_riwayat = '<a href="#" >Riwayat </a>';
-            $row = [];
-            $row[] = $value->no_rawat;
-            $row[] = $value->tgl_masuk;
-            $row[] = $value->nm_dokter;
-            $row[] = $value->no_rkm_medis;
-            $row[] = $value->nm_pasien;
-            $row[] = $value->nm_bangsal;
-            $row[] = $value->stts_pulang;
-            $row[] = $btn_riwayat;
-            $data[] = $row;
-        }
+        $request = service('request');
+        $startDate = $request->getPost('start_date');
+        $endDate = $request->getPost('end_date');
+        $search = $request->getPost('search')['value'];
+        $start = (int) $request->getPost('start');
+        $length = (int) $request->getPost('length');
 
-        $total_count = $RiwayatModel->RanapAjax($search_value);
-        $arr = [
-            'draw' => $param['draw'],
-            "recordsTotal" => count($total_count),
-            "recordsFiltered" => count($total_count),
-            "data" => $data
+        $data_inap = $RiwayatModel->RanapAjax($startDate, $endDate, $length, $start, $start);
+        $totalRecords = $RiwayatModel->getCountRanap($startDate, $endDate,$search);
 
+        $data_json = [
+            'draw' => intval($request->getPost('draw')),
+            'recordsTotal'=>$totalRecords,
+            'recordsFiltered'=>$totalRecords,
+            'data'=>$data_inap
         ];
 
-        $data_json = json_encode($arr);
+        return $this->response->setJSON($data_json);
 
-        return $data_json;
+        
     }
 
     function ralanAjax()

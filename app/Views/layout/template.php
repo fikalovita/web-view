@@ -155,49 +155,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> -->
     <script>
-        let minDate, maxDate;
+        $(document).ready(function() {
+            var table = $('#riwayat_ranap').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '<?= base_url('data_riwayat/ranapAjax') ?>',
+                    type: 'POST',
+                    data: function(d) {
+                        d.start_date = $('#start_date').val();
+                        d.end_date = $('#end_date').val();
+                    }
+                },
 
-        // Custom filtering function which will search data in column four between two values
-        DataTable.ext.search.push(function(settings, data, dataIndex) {
-            let min = minDate.val();
-            let max = maxDate.val();
-            let date = new Date(data[1]);
+                columns: [{
+                        data: 'no_rawat'
+                    },
+                    {
+                        data: 'tgl_masuk'
+                    },
+                    {
+                        data: 'nm_dokter'
+                    },
+                    {
+                        data: 'no_rkm_medis'
+                    },
+                    {
+                        data: 'nm_pasien'
+                    },
+                    {
+                        data: 'nm_bangsal'
+                    },
+                    {
+                        data: 'stts_pulang'
+                    },
 
-            if (
-                (min === null && max === null) ||
-                (min === null && date <= max) ||
-                (min <= date && max === null) ||
-                (min <= date && date <= max)
-            ) {
-                return true;
-            }
-            return false;
-        });
+                ]
+            });
 
-        // Create date inputs
-        minDate = new DateTime('#min', {
-            format: 'mm dd YYYY'
-        });
-        maxDate = new DateTime('#max', {
-            format: 'mm dd YYYY'
-        });
-
-        // DataTables initialisation
-        let table = new DataTable('#riwayat_ranap', {
-            'processing': true,
-            'serverSide': true,
-            'order': [],
-            'ajax': {
-                'url': '<?= base_url('data_riwayat/ranapAjax') ?>',
-                'type': 'POST'
-            }
-
-        });
-
-        // Refilter the table
-        document.querySelectorAll('#min, #max').forEach((el) => {
-            el.addEventListener('change', () => table.draw());
-        });
+            $('#filter1').on('click', function() {
+                table.ajax.reload();
+            })
+        })
     </script>
     <script>
         new DataTable('#riwayat_ralan', {
