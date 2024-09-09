@@ -154,64 +154,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdn.datatables.net/datetime/1.5.3/js/dataTables.dateTime.min.js"></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> -->
-    <script>
-        $(document).ready(function() {
-            var table = $('#riwayat_ranap').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: '<?= base_url('data_riwayat/ranapAjax') ?>',
-                    type: 'POST',
-                    data: function(d) {
-                        d.start_date = $('#start_date').val();
-                        d.end_date = $('#end_date').val();
-                    }
-                },
-
-                columns: [{
-                        data: 'no_rawat'
-                    },
-                    {
-                        data: 'tgl_masuk'
-                    },
-                    {
-                        data: 'nm_dokter'
-                    },
-                    {
-                        data: 'no_rkm_medis'
-                    },
-                    {
-                        data: 'nm_pasien'
-                    },
-                    {
-                        data: 'nm_bangsal'
-                    },
-                    {
-                        data: 'stts_pulang'
-                    },
-
-                    {
-                        data: null,
-                        className: 'text-center',
-                        render: function(data) {
-                            return '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Riwayat Pemeriksaan" id="detailRanap" onclick="detailRanap(' + data.no_rawat + ',' + String(data.no_rkm_medis) + ')"><i class="fas fa-notes-medical"></i></button>';
-                        }
-                    }
-
-                ]
-            });
-
-            $('#filter1').on('click', function() {
-                table.ajax.reload();
-            })
-
-
-        });
-
-        function detailRanap(no_rawat, no_rkm_medis) {
-            alert('hallo ' + no_rkm_medis)
-        }
-    </script>
+    <script src="<?= base_url('data_ranap.js') ?>"></script>
     <script>
         new DataTable('#riwayat_ralan', {
             'processing': true,
