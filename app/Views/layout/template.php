@@ -192,8 +192,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     {
                         data: null,
                         className: 'text-center',
-                        render: function() {
-                            return '<a href="<?= base_url('detail_ranap') ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Riwayat Pemeriksaan"><i class="fas fa-notes-medical"></i></a>';
+                        render: function(data) {
+                            return '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Riwayat Pemeriksaan" id="detailRanap"><i class="fas fa-notes-medical"></i></button>';
                         }
                     }
 
