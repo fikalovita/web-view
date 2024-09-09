@@ -189,11 +189,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     {
                         data: 'stts_pulang'
                     },
+
                     {
                         data: null,
                         className: 'text-center',
                         render: function(data) {
-                            return '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Riwayat Pemeriksaan" id="detailRanap"><i class="fas fa-notes-medical"></i></button>';
+                            return '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Riwayat Pemeriksaan" id="detailRanap" onclick="detailRanap(' + data.no_rawat + ',' + String(data.no_rkm_medis) + ')"><i class="fas fa-notes-medical"></i></button>';
                         }
                     }
 
@@ -203,7 +204,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $('#filter1').on('click', function() {
                 table.ajax.reload();
             })
+
+
         });
+
+        function detailRanap(no_rawat, no_rkm_medis) {
+            alert('hallo ' + no_rkm_medis)
+        }
     </script>
     <script>
         new DataTable('#riwayat_ralan', {
