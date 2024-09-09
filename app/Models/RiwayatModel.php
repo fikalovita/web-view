@@ -18,6 +18,7 @@ class RiwayatModel extends Model
         $builder->join('dokter', 'dpjp_ranap.kd_dokter=dokter.kd_dokter', 'inner');
         $builder->join('kamar', 'kamar_inap.kd_kamar=kamar.kd_kamar', 'inner');
         $builder->join('bangsal', 'kamar.kd_bangsal=bangsal.kd_bangsal', 'inner');
+        $builder->where('kamar_inap.stts_pulang', '-');
 
         if ($startDate && $endDate) {
             $builder->where('kamar_inap.tgl_masuk >=', $startDate);
@@ -25,13 +26,16 @@ class RiwayatModel extends Model
         }
 
         if ($search) {
-            $builder->orLike('kamar_inap.no_rawat', $search);
-            $builder->orLike('kamar_inap.tgl_masuk', $search);
-            $builder->orLike('bangsal.nm_bangsal', $search);
-            $builder->orLike('reg_periksa.no_rkm_medis', $search);
-            $builder->orLike('pasien/nm_pasien', $search);
-            $builder->orLike('dokter.nm_dokter', $search);
-            $builder->orLike('kamar_ina.stts_pulang');
+            $arr_search = explode(" ", $search);
+            for ($i = 0; $i < count($arr_search); $i++) {
+                $builder->orLike('kamar_inap.no_rawat', $arr_search[$i]);
+                $builder->orLike('kamar_inap.tgl_masuk', $arr_search[$i]);
+                $builder->orLike('bangsal.nm_bangsal', $arr_search[$i]);
+                $builder->orLike('reg_periksa.no_rkm_medis', $arr_search[$i]);
+                $builder->orLike('pasien.nm_pasien', $arr_search[$i]);
+                $builder->orLike('dokter.nm_dokter', $arr_search[$i]);
+                $builder->orLike('kamar_inap.stts_pulang', $arr_search[$i]);
+            }
         }
 
         $builder->limit($limit, $offset);
@@ -55,13 +59,16 @@ class RiwayatModel extends Model
         }
 
         if ($search) {
-            $builder->orLike('kamar_inap.no_rawat', $search);
-            $builder->orLike('kamar_inap.tgl_masuk', $search);
-            $builder->orLike('bangsal.nm_bangsal', $search);
-            $builder->orLike('reg_periksa.no_rkm_medis', $search);
-            $builder->orLike('pasien/nm_pasien', $search);
-            $builder->orLike('dokter.nm_dokter', $search);
-            $builder->orLike('kamar_ina.stts_pulang');
+            $arr_search = explode(" ", $search);
+            for ($i = 0; $i < count($arr_search); $i++) {
+                $builder->orLike('kamar_inap.no_rawat', $arr_search[$i]);
+                $builder->orLike('kamar_inap.tgl_masuk', $arr_search[$i]);
+                $builder->orLike('bangsal.nm_bangsal', $arr_search[$i]);
+                $builder->orLike('reg_periksa.no_rkm_medis', $arr_search[$i]);
+                $builder->orLike('pasien.nm_pasien', $arr_search[$i]);
+                $builder->orLike('dokter.nm_dokter', $arr_search[$i]);
+                $builder->orLike('kamar_inap.stts_pulang', $arr_search[$i]);
+            }
         }
 
         return $builder->countAllResults();

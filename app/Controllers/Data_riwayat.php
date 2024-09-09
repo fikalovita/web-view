@@ -5,31 +5,30 @@ namespace App\Controllers;
 use App\Models\RiwayatModel;
 
 use CodeIgniter\RESTful\ResourceController;
+
 class Data_riwayat extends BaseController
 {
     function ranapAjax()
     {
         $RiwayatModel = new RiwayatModel();
         $request = service('request');
-        $startDate = $request->getPost('start_date');
-        $endDate = $request->getPost('end_date');
+        $startDate = $request->getPost('start_date') ?: date('Y-m-d');
+        $endDate = $request->getPost('end_date') ?: date('Y-m-d');
         $search = $request->getPost('search')['value'];
         $start = (int) $request->getPost('start');
         $length = (int) $request->getPost('length');
 
         $data_inap = $RiwayatModel->RanapAjax($startDate, $endDate, $length, $start, $start);
-        $totalRecords = $RiwayatModel->getCountRanap($startDate, $endDate,$search);
+        $totalRecords = $RiwayatModel->getCountRanap($startDate, $endDate, $search);
 
         $data_json = [
             'draw' => intval($request->getPost('draw')),
-            'recordsTotal'=>$totalRecords,
-            'recordsFiltered'=>$totalRecords,
-            'data'=>$data_inap
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecords,
+            'data' => $data_inap
         ];
 
         return $this->response->setJSON($data_json);
-
-        
     }
 
     function ralanAjax()

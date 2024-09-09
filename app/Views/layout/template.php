@@ -189,6 +189,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     {
                         data: 'stts_pulang'
                     },
+                    {
+                        data: null,
+                        className: 'text-center',
+                        render: function() {
+                            return '<a href="<?= base_url('detail_ranap') ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Riwayat Pemeriksaan"><i class="fas fa-notes-medical"></i></a>';
+                        }
+                    }
 
                 ]
             });
@@ -196,7 +203,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $('#filter1').on('click', function() {
                 table.ajax.reload();
             })
-        })
+        });
     </script>
     <script>
         new DataTable('#riwayat_ralan', {

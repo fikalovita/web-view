@@ -13,16 +13,16 @@
                                 <div class="form-inline" method="POST">
                                     <div class="form-group row mr-2">
                                         <div class="col-2">
-                                            <input type="date" id="start_date" class="form-control form-control-sm">
+                                            <input type="date" id="start_date" class="form-control form-control-sm datepicker">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-2">
-                                            <input type="date" id="end_date" class="form-control form-control-sm" autocomplete="off">
+                                            <input type="date" id="end_date" class="form-control form-control-sm datepicker" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <button class="btn btn-success btn-sm" id="filter1"><i class="fas fa-filter"></i></button>
+                                        <button class="btn btn-info btn-sm" id="filter1" data-toggle="tooltip" data-placement="left" title="filter"><i class="fas fa-filter"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                     <th scope="col">Nama Pasien</th>
                                     <th scope="col">Kamar</th>
                                     <th scope="col">Status Pulang</th>
-                                    <!-- <th scope="col">Action</th> -->
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
