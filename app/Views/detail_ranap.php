@@ -9,71 +9,71 @@
                         <form action="#">
                             <fieldset disabled>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="row mb-1">
-
-                                            <label for="colFormLabelSm" class="col-1  col-form-label-sm">Pasien</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" value="">
+                                    <?php foreach ($riwayat_ranap as $key => $value) : ?>
+                                        <div class="col-md-6">
+                                            <div class="row mb-1">
+                                                <label for="colFormLabelSm" class="col-1  col-form-label-sm">Pasien</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" value="">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
+                                                <label for="colFormLabelSm" class="col- col-form-label-sm mx-3">JK</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                            <div class="row mb-1">
+                                                <label for="colFormLabelSm" class="col-1 col-form-label-sm">Alamat</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
+                                                <label for="colFormLabelSm" class="col- col-form-label-sm mx-2">G.D</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
                                             </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm mx-3">JK</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-1 col-form-label-sm">Alamat</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm mx-2">G.D</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-1 col-form-label-sm">Agama</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm">Stts.Nikah</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm">Pendidikan</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-2 col-form-label-sm">Tempat & Tgl.lahir</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                            <div class="row mb-1">
+                                                <label for="colFormLabelSm" class="col-1 col-form-label-sm">Agama</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
+                                                <label for="colFormLabelSm" class="col- col-form-label-sm">Stts.Nikah</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
+                                                <label for="colFormLabelSm" class="col- col-form-label-sm">Pendidikan</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-2 col-form-label-sm">Nama Ibu</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                        <div class="col-md-6">
+                                            <div class="row mb-1">
+                                                <label for="colFormLabelSm" class="col-2 col-form-label-sm">Tempat & Tgl.lahir</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <label for="colFormLabelSm" class="col-2 col-form-label-sm">Nama Ibu</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <label for="colFormLabelSm" class="col-2 col-form-label-sm">Bahasa</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
+                                                <label for="colFormLabelSm" class="col- col-form-label-sm">Cacat Fisik</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-2 col-form-label-sm">Bahasa</label>
-                                            <div class="col-sm-3">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm">Cacat Fisik</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <?php endforeach; ?>
                                 </div>
                             </fieldset>
                         </form>
