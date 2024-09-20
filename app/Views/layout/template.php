@@ -12,19 +12,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Google Font: Source Sans Pro -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.bootstrap4.js"></script>
 
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css" async>
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.5.3/css/dataTables.dateTime.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
-
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css" async>
 
 </head>
 
@@ -146,15 +143,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- jQuery -->
     <!-- Bootstrap 4 -->
-    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js" async></script>
     <!-- AdminLTE App -->
-    <script src="/dist/js/adminlte.min.js"></script>
-    <script src="/dist/js/datepicker.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
-    <script src="https://cdn.datatables.net/datetime/1.5.3/js/dataTables.dateTime.min.js"></script>
+    <script src="/dist/js/adminlte.min.js" async></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> -->
-    <script src="<?= base_url('data_ranap.js') ?>"></script>
+    <script src="<?= base_url('data_ranap.js') ?>" async></script>
     <script>
         new DataTable('#riwayat_ralan', {
             'processing': true,

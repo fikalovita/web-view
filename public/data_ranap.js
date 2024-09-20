@@ -37,7 +37,7 @@
                         data: null,
                         className: 'text-center',
                         render: function (data) {
-                            return '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Riwayat Pemeriksaan" id="detailRanap" onclick="detailRanap(' + data.no_rawat.replace(/\//g, '') + ',' + data.no_rkm_medis.replace(/\//g, '') + ')"><i class="fas fa-notes-medical"></i></button>';
+                            return '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Riwayat Pemeriksaan" id="detailRanap" onclick="detailRanap(' + data.no_rawat.replace(/\//g, '') + ',' + data.no_rkm_medis.replace(/[^0-9]+/g, '') + ')"><i class="fas fa-notes-medical"></i></button>';
                         }
                     }
 
@@ -53,6 +53,6 @@
 
         function detailRanap(no_rawat, no_rkm_medis) {
 
-            window.location.href = 'http://localhost:8080/detail_ranap/' + no_rawat + '/' + no_rkm_medis;
+            window.location.href = 'http://localhost:8080/detail_ranap/' + no_rawat ;
 }
     

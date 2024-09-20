@@ -11,9 +11,10 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="row mb-1">
+
                                             <label for="colFormLabelSm" class="col-1  col-form-label-sm">Pasien</label>
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" value="">
                                             </div>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
@@ -72,6 +73,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </fieldset>
                         </form>
