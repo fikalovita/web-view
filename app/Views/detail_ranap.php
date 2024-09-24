@@ -14,20 +14,20 @@
                                             <div class="row mb-1">
                                                 <label for="colFormLabelSm" class="col-1  col-form-label-sm">Pasien</label>
                                                 <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" value="">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" value="<?= $value->no_rkm_medis ?>">
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->nm_pasien ?>">
                                                 </div>
                                                 <label for="colFormLabelSm" class="col- col-form-label-sm mx-3">JK</label>
                                                 <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->jk ?>">
                                                 </div>
                                             </div>
                                             <div class="row mb-1">
                                                 <label for="colFormLabelSm" class="col-1 col-form-label-sm">Alamat</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->alamatpj ?>">
                                                 </div>
                                                 <label for="colFormLabelSm" class="col- col-form-label-sm mx-2">G.D</label>
                                                 <div class="col-sm-2">
@@ -37,15 +37,15 @@
                                             <div class="row mb-1">
                                                 <label for="colFormLabelSm" class="col-1 col-form-label-sm">Agama</label>
                                                 <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->agama ?>">
                                                 </div>
                                                 <label for="colFormLabelSm" class="col- col-form-label-sm">Stts.Nikah</label>
                                                 <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->stts_nikah ?>">
                                                 </div>
                                                 <label for="colFormLabelSm" class="col- col-form-label-sm">Pendidikan</label>
                                                 <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->pnd ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -53,23 +53,23 @@
                                             <div class="row mb-1">
                                                 <label for="colFormLabelSm" class="col-2 col-form-label-sm">Tempat & Tgl.lahir</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->tmp_tgl_lahir ?>">
                                                 </div>
                                             </div>
                                             <div class="row mb-1">
                                                 <label for="colFormLabelSm" class="col-2 col-form-label-sm">Nama Ibu</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->nm_ibu ?>">
                                                 </div>
                                             </div>
                                             <div class="row mb-1">
                                                 <label for="colFormLabelSm" class="col-2 col-form-label-sm">Bahasa</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->nama_bahasa ?>">
                                                 </div>
                                                 <label for="colFormLabelSm" class="col- col-form-label-sm">Cacat Fisik</label>
                                                 <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->nama_cacat ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -94,7 +94,7 @@
                     <div class="tab-pane fade show active" id="nav-kunjungan" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm">
+                                <table class="table table-bordered table-responsive-lg table-sm" id="table-kunjungan">
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col">No</th>

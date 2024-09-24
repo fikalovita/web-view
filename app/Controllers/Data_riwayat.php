@@ -10,6 +10,7 @@ class Data_riwayat extends BaseController
 {
     function ranapAjax()
     {
+        //ambil data request dari datatable dan input tanggal
         $RiwayatModel = new RiwayatModel();
         $request = service('request');
         $startDate = $request->getPost('start_date') ?: date('Y-m-d');
@@ -18,8 +19,10 @@ class Data_riwayat extends BaseController
         $start = (int) $request->getPost('start');
         $length = (int) $request->getPost('length');
 
-        $data_inap = $RiwayatModel->RanapAjax($startDate, $endDate, $length, $start, $start);
+        //data pasien ranap dari model RiwayatModel()
+        $data_inap = $RiwayatModel->RanapAjax($startDate, $endDate, $length, $start, $search);
         $totalRecords = $RiwayatModel->getCountRanap($startDate, $endDate, $search);
+
 
         $data_json = [
             'draw' => intval($request->getPost('draw')),
@@ -39,13 +42,6 @@ class Data_riwayat extends BaseController
         $search_value = isset($_REQUEST['search']['value']) ? $_REQUEST['search']['value'] : '';
         $RiwayatModel = new RiwayatModel();
         $data = [];
-        // $tgl1 = $this->request->getGet('tgl1');
-        // $tgl2 = $this->request->getGet('tgl2');
-        // dd($tgl1);
-        // if () {
-        //     # code...
-        // }
-        // $date = [$tgl1, $tgl2];
         $data_ralan = $RiwayatModel->RalanAjax($search_value, $start, $length);
         foreach ($data_ralan as $value) {
             $btn_riwayat = '<a href="' . base_url('detail_ralan/' . str_replace("/", "", $value->no_rawat)) . '" >Riwayat </a>';

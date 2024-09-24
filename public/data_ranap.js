@@ -53,6 +53,26 @@
 
         function detailRanap(no_rawat, no_rkm_medis) {
 
-            window.location.href = 'http://localhost:8080/detail_ranap/' + no_rawat ;
-}
+            window.location.href = 'http://localhost:8080/detail_ranap/' + no_rawat + '/'  + no_rkm_medis ;
+        }
+
+        var table = $('#table-kunjungan').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: false, 
+            paging: false,
+            ordering: true, 
+            // ajax: {
+            //     url: 'http://localhost:8080/data_riwayat/ranapAjax',
+            //     type: 'POST',
+            //     data: function (d) {
+            //         d.start_date = $('#start_date').val();
+            //         d.end_date = $('#end_date').val();
+            //     }
+            // },
+
+        });
+
+
+
     

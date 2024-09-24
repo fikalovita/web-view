@@ -10,11 +10,11 @@ class Detail_ranap extends BaseController
     {
         $uri = current_url(true);
         $DetailRanapModel = new DetailRanapModel;
-        $pasien_ranap = $DetailRanapModel->detailPasienRanap();
         $no_rawat = $uri->getSegment(2);
-        // $param = $pasien_ranap->no_rawat;
+        //kirim no_rawat ke fungsi tampilKunjungan()
+        $DetailRanapModel->tampilKunjungan($no_rawat)->getResult();
+        //ambil data pasien
         $riwayat_ranap = $DetailRanapModel->riwayatPasienRanap($no_rawat)->getResult();
-        dd($no_rawat);
         $data = ['no_rawat' => (int) $no_rawat];
         $data = [
             'title' => 'Riwayat Rawat Inap',
@@ -22,5 +22,9 @@ class Detail_ranap extends BaseController
 
         ];
         return view('detail_ranap', $data);
+    }
+
+    function tampilKunjungan() {
+        
     }
 }
