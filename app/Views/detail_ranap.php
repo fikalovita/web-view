@@ -1,12 +1,13 @@
 <?= $this->extend('layout/template') ?>
 <?= $this->section('content') ?>
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="#">
+                        <form action="#" method="POST">
                             <fieldset disabled>
                                 <div class="row">
                                     <?php foreach ($riwayat_ranap as $key => $value) : ?>
@@ -72,6 +73,12 @@
                                                     <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->nama_cacat ?>">
                                                 </div>
                                             </div>
+                                            <div class="row mb-1">
+                                                <label for="colFormLabelSm" class="col-2 col-form-label-sm">No.Rawat</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-sm" id="no_rawat" placeholder="col-form-label-sm" value="<?= $value->no_rawat ?>">
+                                                </div>
+                                            </div>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
@@ -81,7 +88,7 @@
                 </div>
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-kunjungan" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Riwayat Kunjungan</button>
+                        <a href="#kunjungan" class="btn nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-kunjungan" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Riwayat Kunjungan</a>
                         <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-soap" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Riwayat S.O.A.P.I.E</button>
                         <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-sbar" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Riwayat S.B.A.R</button>
                         <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-diagnosa" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Riwayat Diagnosa</button>

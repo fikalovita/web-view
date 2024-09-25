@@ -45,7 +45,7 @@ class DetailRanapModel extends Model
         $formatted = "{$year}/{$month}/{$day}/{$code}";
 
         $builder = $this->db->table('reg_periksa');
-        $builder->select("reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.status_lanjut,reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.umurdaftar,reg_periksa.sttsumur,poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab");
+        $builder->select("reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.status_lanjut,reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.umurdaftar,reg_periksa.sttsumur,poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,reg_periksa.no_rawat");
         $builder->join('dokter', 'dokter.kd_dokter=reg_periksa.kd_dokter', 'inner');
         $builder->join('poliklinik', 'poliklinik.kd_poli=reg_periksa.kd_poli', 'inner');
         $builder->join('penjab', 'penjab.kd_pj=reg_periksa.kd_pj');

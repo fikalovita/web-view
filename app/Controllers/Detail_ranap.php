@@ -11,8 +11,6 @@ class Detail_ranap extends BaseController
         $uri = current_url(true);
         $DetailRanapModel = new DetailRanapModel;
         $no_rawat = $uri->getSegment(2);
-        //kirim no_rawat ke fungsi tampilKunjungan()
-        $DetailRanapModel->tampilKunjungan($no_rawat)->getResult();
         //ambil data pasien
         $riwayat_ranap = $DetailRanapModel->riwayatPasienRanap($no_rawat)->getResult();
         $data = ['no_rawat' => (int) $no_rawat];
@@ -23,8 +21,17 @@ class Detail_ranap extends BaseController
         ];
         return view('detail_ranap', $data);
     }
+    function tampilKunjungan()
+    {
+        $request = service('request');
+        $DetailRanapModel = new DetailRanapModel;
+        $no_rawat = $request->getPost('no_rawat');
+        // dd($no_rawat);
+        $data_kunjungan = $DetailRanapModel->tampilKunjungan($no_rawat)->getResult();
+        $data_json = [
+            'data' => $data_kunjungan
+        ];
 
-    function tampilKunjungan() {
-        
+        return $this->response->setJSON($data_json);
     }
 }
