@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="#" method="POST">
+                        <form action="#" method="post">
                             <fieldset disabled>
                                 <div class="row">
                                     <?php foreach ($riwayat_ranap as $key => $value) : ?>
@@ -114,18 +114,6 @@
                                             <th scope="col">Jenis Bayar</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
