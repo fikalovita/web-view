@@ -76,7 +76,7 @@
                                             <div class="row mb-1">
                                                 <label for="colFormLabelSm" class="col-2 col-form-label-sm">No.Rawat</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-sm" id="no_rawat" placeholder="col-form-label-sm" value="<?= $value->no_rawat ?>">
+                                                    <input type="text" class="form-control form-control-sm" id="no_rawat" placeholder="col-form-label-sm" name="no_rawat" value="<?= $value->no_rawat ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -108,12 +108,24 @@
                                             <th scope="col">No.Rawat</th>
                                             <th scope="col">Tanggal</th>
                                             <th scope="col">Jam</th>
-                                            <th scope="col">Kd.Dokter</th>
                                             <th scope="col">Dokter Dituju/DPJP</th>
                                             <th scope="col">Umur</th>
                                             <th scope="col">Jenis Bayar</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php foreach ($riwayat_kunjungan as $rk): ?>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><?= $rk->no_rawat ?></td>
+                                                <td><?= $rk->jam_reg ?></td>
+                                                <td><?= $rk->tgl_registrasi ?></td>
+                                                <td><?= $rk->nm_dokter ?></td>
+                                                <td><?= $rk->umur  ?></td>
+                                                <td><?= $rk->tgl_registrasi ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -232,44 +244,46 @@
                                         <tr>
                                             <th scope="col">Tgl.Reg</th>
                                             <th scope="col">No.Rawat</th>
-                                            <th scope="col">Status</th>
+
                                             <th scope="col" class="text-center">Diagnosa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>
-                                                <table class="table table-bordered table-responsive-lg table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">Tanggal</th>
-                                                            <th scope="col">Dokter/Paramedis</th>
-                                                            <th scope="col">Subjek</th>
-                                                            <th scope="col">Objek</th>
-                                                            <th scope="col">Asesmen</th>
-                                                            <th scope="col">Plan</th>
-                                                            <th scope="col">Instruksi</th>
-                                                            <th scope="col">Evaluasi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
+                                        <?php foreach ($riwayat_diagnosa as $rd): ?>
+                                            <tr>
+
+                                                <td><?= $rd->tgl_registrasi ?></td>
+                                                <td><?= $rd->no_rawat ?></td>
+                                                <td>
+                                                    <table class="table table-bordered table-responsive-lg table-sm">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th scope="col">Tanggal</th>
+                                                                <th scope="col">Dokter/Paramedis</th>
+                                                                <th scope="col">Subjek</th>
+                                                                <th scope="col">Objek</th>
+                                                                <th scope="col">Asesmen</th>
+                                                                <th scope="col">Plan</th>
+                                                                <th scope="col">Instruksi</th>
+                                                                <th scope="col">Evaluasi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">1</th>
+                                                                <td>Mark</td>
+                                                                <td>Otto</td>
+                                                                <td>@mdo</td>
+                                                                <td>@mdo</td>
+                                                                <td>@mdo</td>
+                                                                <td>@mdo</td>
+                                                                <td>@mdo</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>

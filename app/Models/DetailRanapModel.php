@@ -45,11 +45,24 @@ class DetailRanapModel extends Model
         $formatted = "{$year}/{$month}/{$day}/{$code}";
 
         $builder = $this->db->table('reg_periksa');
-        $builder->select("reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.status_lanjut,reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.umurdaftar,reg_periksa.sttsumur,poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,reg_periksa.no_rawat");
+        $builder->select("reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.status_lanjut,reg_periksa.kd_dokter,dokter.nm_dokter,concat(reg_periksa.umurdaftar, ' ', reg_periksa.sttsumur) as umur,poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,reg_periksa.no_rawat");
         $builder->join('dokter', 'dokter.kd_dokter=reg_periksa.kd_dokter', 'inner');
         $builder->join('poliklinik', 'poliklinik.kd_poli=reg_periksa.kd_poli', 'inner');
         $builder->join('penjab', 'penjab.kd_pj=reg_periksa.kd_pj');
         $builder->where('reg_periksa.no_rawat', $formatted);
+        return $builder->get();
+    }
+
+    function tampilDiagnosa($no_rkm_medis)
+    {
+        $builder = $this->db->table('reg_periksa');
+        $builder->select('reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi');
+        $builder->where('reg_periksa.stts <>', 'Batal');
+        $builder->like('reg_periksa.no_rkm_medis', $no_rkm_medis);
+        $builder->groupBy('reg_periksa.tgl_registrasi');
+        $builder->orderBy('reg_periksa.tgl_registrasi', 'desc');
+        $builder->limit(5);
+
         return $builder->get();
     }
 }

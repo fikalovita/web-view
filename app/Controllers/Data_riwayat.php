@@ -15,13 +15,14 @@ class Data_riwayat extends BaseController
         $request = service('request');
         $startDate = $request->getPost('start_date') ?: date('Y-m-d');
         $endDate = $request->getPost('end_date') ?: date('Y-m-d');
+        $status_pulang = $request->getPost('status') ?: "-";
         $search = $request->getPost('search')['value'];
         $start = (int) $request->getPost('start');
         $length = (int) $request->getPost('length');
 
         //data pasien ranap dari model RiwayatModel()
-        $data_inap = $RiwayatModel->RanapAjax($startDate, $endDate, $length, $start, $search);
-        $totalRecords = $RiwayatModel->getCountRanap($startDate, $endDate, $search);
+        $data_inap = $RiwayatModel->RanapAjax($startDate, $endDate, $status_pulang, $length, $start, $search);
+        $totalRecords = $RiwayatModel->getCountRanap($startDate, $endDate, $status_pulang, $search);
 
 
         $data_json = [
