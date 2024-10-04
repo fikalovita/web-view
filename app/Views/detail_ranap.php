@@ -204,6 +204,7 @@ $db = \Config\Database::connect(); ?>
                                             <td>Mark</td>
                                             <td>Otto</td>
                                             <td>
+                                                <!-- tabel data riwayat SOAPIE -->
                                                 <table class="table table-bordered table-responsive-lg table-sm">
                                                     <thead class="thead-light">
                                                         <tr>
@@ -228,6 +229,7 @@ $db = \Config\Database::connect(); ?>
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                <!-- End tabel riwayat SOAPIE -->
                                             </td>
                                         </tr>
                                     </tbody>
@@ -249,6 +251,7 @@ $db = \Config\Database::connect(); ?>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <!-- tabel data riwayat diagnosa -->
                                         <?php for ($px = 0; $px < count($tampilIdentitas); $px++): ?>
                                             <tr>
                                                 <td><?= $tampilIdentitas[$px]->tgl_registrasi ?></td>
@@ -281,8 +284,7 @@ $db = \Config\Database::connect(); ?>
                                                     echo '</tbody>';
                                                     echo '</table>';
                                                     ?>
-
-
+                                                    <!-- End tabel riwayat diagnosa -->
                                                 </td>
                                             </tr>
                                         <?php endfor; ?>
