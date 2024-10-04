@@ -1,6 +1,7 @@
 <?= $this->extend('layout/template') ?>
 <?= $this->section('content') ?>
-
+<?php
+$db = \Config\Database::connect(); ?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -244,46 +245,47 @@
                                         <tr>
                                             <th scope="col">Tgl.Reg</th>
                                             <th scope="col">No.Rawat</th>
-
-                                            <th scope="col" class="text-center">Diagnosa</th>
+                                            <th scope="col-5" class="text-center">Diagnosa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($riwayat_diagnosa as $rd): ?>
+                                        <?php for ($px = 0; $px < count($tampilIdentitas); $px++): ?>
                                             <tr>
-
-                                                <td><?= $rd->tgl_registrasi ?></td>
-                                                <td><?= $rd->no_rawat ?></td>
+                                                <td><?= $tampilIdentitas[$px]->tgl_registrasi ?></td>
+                                                <td><?= $tampilIdentitas[$px]->no_rawat ?></td>
                                                 <td>
-                                                    <table class="table table-bordered table-responsive-lg table-sm">
+                                                    <?php
+                                                    $builder = $db->table('diagnosa_pasien')
+                                                        ->select('diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit,diagnosa_pasien.status')
+                                                        ->join('penyakit', 'penyakit.kd_penyakit=diagnosa_pasien.kd_penyakit')
+                                                        ->where('diagnosa_pasien.no_rawat', $tampilIdentitas[$px]->no_rawat);
+                                                    $query = $builder->get()->getResult();
+
+                                                    echo '<table class="table table-bordered table-responsive-lg table-sm">
                                                         <thead class="thead-light">
                                                             <tr>
-                                                                <th scope="col">Tanggal</th>
-                                                                <th scope="col">Dokter/Paramedis</th>
-                                                                <th scope="col">Subjek</th>
-                                                                <th scope="col">Objek</th>
-                                                                <th scope="col">Asesmen</th>
-                                                                <th scope="col">Plan</th>
-                                                                <th scope="col">Instruksi</th>
-                                                                <th scope="col">Evaluasi</th>
+                                                                <th scope="col">Kode Penyakit</th>
+                                                                <th scope="col">Nama Penyakit</th>
+                                                                <th scope="col">Status</th>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
-                                                                <td>@mdo</td>
-                                                                <td>@mdo</td>
-                                                                <td>@mdo</td>
-                                                                <td>@mdo</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                        </thead>';
+                                                    echo '<tbody>';
+                                                    foreach ($query as $dx) {
+                                                        echo '
+                                                                        <tr>
+                                                                        <td scope="col">' . $dx->kd_penyakit . '</td>
+                                                                        <td scope="col">' . $dx->nm_penyakit . '</td>
+                                                                        <td scope="col">' . $dx->status . '</td>
+                                                                        </tr>';
+                                                    };
+                                                    echo '</tbody>';
+                                                    echo '</table>';
+                                                    ?>
+
+
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
+                                        <?php endfor; ?>
                                     </tbody>
                                 </table>
                             </div>
