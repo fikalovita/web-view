@@ -56,7 +56,7 @@ class DetailRanapModel extends Model
     function tampilIdentitas($no_rkm_medis)
     {
         $builder = $this->db->table('reg_periksa');
-        $builder->select('reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi');
+        $builder->select('reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.status_lanjut');
         $builder->where('reg_periksa.stts <>', 'Batal');
         $builder->like('reg_periksa.no_rkm_medis', $no_rkm_medis);
         $builder->groupBy('reg_periksa.tgl_registrasi');

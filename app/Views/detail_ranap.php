@@ -146,39 +146,80 @@ $db = \Config\Database::connect(); ?>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>
-                                                <table class="table table-bordered table-responsive-lg table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">Tanggal</th>
-                                                            <th scope="col">Dokter/Paramedis</th>
-                                                            <th scope="col">Subjek</th>
-                                                            <th scope="col">Objek</th>
-                                                            <th scope="col">Asesmen</th>
-                                                            <th scope="col">Plan</th>
-                                                            <th scope="col">Instruksi</th>
-                                                            <th scope="col">Evaluasi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
+                                        <?php for ($px2 = 0; $px2 < count($tampilIdentitas); $px2++) : ?>
+                                            <tr>
+                                                <td scope="row" class="text-nowrap"><?= $tampilIdentitas[$px2]->tgl_registrasi ?></td>
+                                                <td><?= $tampilIdentitas[$px2]->no_rawat ?></td>
+                                                <td><?= $tampilIdentitas[$px2]->status_lanjut ?></td>
+                                                <td>
+                                                    <?php
+                                                    //Query SOAPIE pemeriksaan rawat jalan
+                                                    $builder = $db->table('pemeriksaan_ralan')
+                                                        ->select('pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat,pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.spo2,pemeriksaan_ralan.kesadaran,pemeriksaan_ralan.keluhan,pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,pemeriksaan_ralan.lingkar_perut,pemeriksaan_ralan.rtl,pemeriksaan_ralan.penilaian,pemeriksaan_ralan.instruksi,pemeriksaan_ralan.evaluasi,pemeriksaan_ralan.nip,pegawai.jbtn,pegawai.nama')->join('pegawai', 'pegawai.nik=pemeriksaan_ralan.nip')->notLike('pemeriksaan_ralan.keluhan', '::')->notLike('pemeriksaan_ralan.penilaian', '::')->notLike('pemeriksaan_ralan.pemeriksaan', '::')->notLike('pemeriksaan_ralan.pemeriksaan', '::')->notLike('pemeriksaan_ralan.rtl', '::')->notLike('pemeriksaan_ralan.instruksi', '::')->where('pemeriksaan_ralan.no_rawat', $tampilIdentitas[$px2]->no_rawat);
+                                                    $query_ralan = $builder->get()->getResult();
+                                                    //End Query SOAPIE pemeriksaan rawat jalan
+                                                    ?>
+                                                    <?php
+                                                    echo '<table class="table table-bordered table-responsive-lg table-sm">';
+                                                    echo '<thead class="thead-light">
+                                                            <tr>
+                                                                <th scope="col-3" class="text-center">Tanggal</th>
+                                                                <th scope="col" class="text-center">Dokter/Paramedis</th>
+                                                                <th scope="col" class="text-center">Subjek</th>
+                                                                <th scope="col" class="text-center">Objek</th>
+                                                                <th scope="col" class="text-center">Asesmen</th>
+                                                                <th scope="col-2" class="text-center">Plan</th>
+                                                                <th scope="col" class="text-center">Instruksi</th>
+                                                                <th scope="col" class="text-center">Evaluasi</th>
+                                                            </tr>
+                                                        </thead>';
+                                                    echo '<tbody>';
+                                                    //cek SOAPIE rawat inap dan rawat jalan
+                                                    if ($tampilIdentitas[$px2]->status_lanjut == 'Ralan') {
+
+                                                        foreach ($query_ralan as $pr) {
+                                                            $alergi = ($pr->alergi != "") ? '<br>Alergi :' . $pr->alergi : "";
+                                                            $suhu_tubuh = ($pr->suhu_tubuh != "") ? '<br>Suhu(C) :' . $pr->suhu_tubuh : "";
+                                                            $tensi = ($pr->tensi != "") ? '<br>Tensi :' . $pr->tensi : "";
+                                                            $nadi = ($pr->nadi != "") ? '<br>Nadi :' . $pr->nadi : "";
+                                                            $tinggi = ($pr->tinggi != "") ? '<br>Tinggi(Cm) :' . $pr->tinggi : "";
+                                                            $berat = ($pr->berat != "") ? '<br>Berat(Kg) :' . $pr->berat : "";
+                                                            $gcs = ($pr->gcs != "") ? '<br>GCS(E,V,M)' : "";
+                                                            $spo2 = ($pr->spo2 != "") ? '<br>SpO2(%) :' . $pr->spo2 : "";
+                                                            $kesadaran = ($pr->kesadaran != "") ? '<br>Kesadaran :' . $pr->kesadaran  : "";
+                                                            $lingkar_perut = ($pr->lingkar_perut != "") ? '<br>Lingkar Perut :' : "";
+
+                                                            echo '<tr>
+                                                                <td scope="row" class="text-center text-nowrap">' . $pr->tgl_perawatan . '<br>' . $pr->jam_rawat . '</td>
+                                                                <td class="text-center text-nowrap">' . $pr->nip . '<br>' . $pr->nama . '</td>
+                                                                <td>' . $pr->keluhan . '</td>
+                                                                <td class="text-nowrap">
+                                                                ' . $pr->pemeriksaan . '
+                                                                 ' . $alergi . '
+                                                                    ' . $suhu_tubuh . '
+                                                                    ' . $tensi . '
+                                                                    ' . $nadi . '
+                                                                    ' . $tinggi . '
+                                                                    ' . $berat . '
+                                                                    ' . $lingkar_perut . '
+                                                                    ' . $spo2 . '
+                                                                    ' . $gcs . '
+                                                                    ' . $kesadaran . '
+                                                                </td>
+                                                                <td>' . $pr->penilaian . '</td>
+                                                                <td>' . $pr->rtl . '</td>
+                                                                <td>' . $pr->instruksi . '</td>
+                                                                <td>' . $pr->evaluasi . '</td>
+                                                            </tr>';
+                                                        }
+                                                    }
+                                                    //End cek SOAPIE
+                                                    echo '</tbody>';
+                                                    echo '</table>';
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                        <?php endfor; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -204,7 +245,7 @@ $db = \Config\Database::connect(); ?>
                                             <td>Mark</td>
                                             <td>Otto</td>
                                             <td>
-                                                <!-- tabel data riwayat SOAPIE -->
+                                                <!-- tabel data riwayat SBAR -->
                                                 <table class="table table-bordered table-responsive-lg table-sm">
                                                     <thead class="thead-light">
                                                         <tr>
@@ -229,7 +270,7 @@ $db = \Config\Database::connect(); ?>
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                <!-- End tabel riwayat SOAPIE -->
+                                                <!-- End tabel riwayat SBAR -->
                                             </td>
                                         </tr>
                                     </tbody>
