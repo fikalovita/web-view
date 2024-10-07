@@ -11,7 +11,7 @@ class DetailRanapModel extends Model
     {
 
         $builder = $this->db->table('pasien');
-        $builder->select('reg_periksa.no_rawat,pasien.no_rkm_medis');
+        $builder->select('reg_periksa.no_rawat,reg_periksa.no_rkm_medis');
         $builder->join('reg_periksa', 'reg_periksa.no_rkm_medis=pasien.no_rkm_medis');
         return $builder->get()->getRow();
     }
@@ -59,13 +59,24 @@ class DetailRanapModel extends Model
         $builder->select('reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.status_lanjut');
         $builder->where('reg_periksa.stts <>', 'Batal');
         $builder->like('reg_periksa.no_rkm_medis', $no_rkm_medis);
+        // $builder->groupBy('reg_periksa.tgl_registrasi');
+        $builder->orderBy('reg_periksa.tgl_registrasi', 'DESC');
+        $builder->limit(5);
+
+        return $builder->get();
+    }
+    function tampilIdentitas2($no_rkm_medis)
+    {
+        $builder = $this->db->table('reg_periksa');
+        $builder->select('reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.status_lanjut');
+        $builder->where('reg_periksa.stts <>', 'Batal');
+        $builder->like('reg_periksa.no_rkm_medis', $no_rkm_medis);
         $builder->groupBy('reg_periksa.tgl_registrasi');
         $builder->orderBy('reg_periksa.tgl_registrasi', 'DESC');
         $builder->limit(5);
 
         return $builder->get();
     }
-
     // function tampilDiagnosa($tampilIdentitas)
     // {
     //     for ($i = 0; $i < count($tampilIdentitas); $i++) {

@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template') ?>
 <?= $this->section('content') ?>
 <?php
-$db = \Config\Database::connect(); ?>
+$db = \Config\Database::connect() ?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -12,75 +12,54 @@ $db = \Config\Database::connect(); ?>
                             <fieldset disabled>
                                 <div class="row">
                                     <?php foreach ($riwayat_ranap as $key => $value) : ?>
-                                        <div class="col-md-6">
-                                            <div class="row mb-1">
-                                                <label for="colFormLabelSm" class="col-1  col-form-label-sm">Pasien</label>
-                                                <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" value="<?= $value->no_rkm_medis ?>">
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->nm_pasien ?>">
-                                                </div>
-                                                <label for="colFormLabelSm" class="col- col-form-label-sm mx-3">JK</label>
-                                                <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->jk ?>">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-1">
-                                                <label for="colFormLabelSm" class="col-1 col-form-label-sm">Alamat</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->alamatpj ?>">
-                                                </div>
-                                                <label for="colFormLabelSm" class="col- col-form-label-sm mx-2">G.D</label>
-                                                <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-1">
-                                                <label for="colFormLabelSm" class="col-1 col-form-label-sm">Agama</label>
-                                                <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->agama ?>">
-                                                </div>
-                                                <label for="colFormLabelSm" class="col- col-form-label-sm">Stts.Nikah</label>
-                                                <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->stts_nikah ?>">
-                                                </div>
-                                                <label for="colFormLabelSm" class="col- col-form-label-sm">Pendidikan</label>
-                                                <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->pnd ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row mb-1">
-                                                <label for="colFormLabelSm" class="col-2 col-form-label-sm">Tempat & Tgl.lahir</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->tmp_tgl_lahir ?>">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-1">
-                                                <label for="colFormLabelSm" class="col-2 col-form-label-sm">Nama Ibu</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->nm_ibu ?>">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-1">
-                                                <label for="colFormLabelSm" class="col-2 col-form-label-sm">Bahasa</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->nama_bahasa ?>">
-                                                </div>
-                                                <label for="colFormLabelSm" class="col- col-form-label-sm">Cacat Fisik</label>
-                                                <div class="col-sm-2">
-                                                    <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" value="<?= $value->nama_cacat ?>">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-1">
-                                                <label for="colFormLabelSm" class="col-2 col-form-label-sm">No.Rawat</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-sm" id="no_rawat" placeholder="col-form-label-sm" name="no_rawat" value="<?= $value->no_rawat ?>">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <table class="table table-borderless table-responsive-md">
+                                            <tbody>
+                                                <tr>
+                                                    <td>No.RM</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->no_rkm_medis ?></td>
+                                                    <td>Nama Pasien</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->nm_pasien ?></td>
+                                                    <td>J.K</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->jk ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Alamat</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->alamatpj ?></td>
+                                                    <td>G.D</td>
+                                                    <td>:</td>
+                                                    <td>GD</td>
+                                                    <td>Nama Ibu Kandung</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->nm_ibu ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Agama</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->agama ?></td>
+                                                    <td>stts.Nikah</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->stts_nikah ?></td>
+                                                    <td>Pendidikan</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->pnd ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tempat & Tgl.Lahir</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->tmp_tgl_lahir ?></td>
+                                                    <td>Cacat Fisik</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->nama_cacat ?></td>
+                                                    <td>Bahasa</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->nama_bahasa ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     <?php endforeach; ?>
                                 </div>
                             </fieldset>
@@ -137,11 +116,11 @@ $db = \Config\Database::connect(); ?>
                         <div class="card">
                             <div class="card-body">
                                 <table class="table table-bordered table-responsive-lg table-sm">
-                                    <thead class="thead-light">
+                                    <thead class="bg-info">
                                         <tr>
-                                            <th scope="col">Tgl.Reg</th>
-                                            <th scope="col">No.Rawat</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col" class="text-center">Tgl.Reg</th>
+                                            <th scope="col" class="text-center">No.Rawat</th>
+                                            <th scope="col" class="text-center">Status</th>
                                             <th scope="col" class="text-center">S.O.A.P.I.E</th>
                                         </tr>
                                     </thead>
@@ -158,38 +137,45 @@ $db = \Config\Database::connect(); ?>
                                                         ->select('pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat,pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.spo2,pemeriksaan_ralan.kesadaran,pemeriksaan_ralan.keluhan,pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,pemeriksaan_ralan.lingkar_perut,pemeriksaan_ralan.rtl,pemeriksaan_ralan.penilaian,pemeriksaan_ralan.instruksi,pemeriksaan_ralan.evaluasi,pemeriksaan_ralan.nip,pegawai.jbtn,pegawai.nama')->join('pegawai', 'pegawai.nik=pemeriksaan_ralan.nip')->notLike('pemeriksaan_ralan.keluhan', '::')->notLike('pemeriksaan_ralan.penilaian', '::')->notLike('pemeriksaan_ralan.pemeriksaan', '::')->notLike('pemeriksaan_ralan.pemeriksaan', '::')->notLike('pemeriksaan_ralan.rtl', '::')->notLike('pemeriksaan_ralan.instruksi', '::')->where('pemeriksaan_ralan.no_rawat', $tampilIdentitas[$px2]->no_rawat);
                                                     $query_ralan = $builder->get()->getResult();
                                                     //End Query SOAPIE pemeriksaan rawat jalan
+                                                    //Query SOAPIE pemeriksaan rawat inap
+                                                    $builder = $db->table('pemeriksaan_ranap')
+                                                        ->select('pemeriksaan_ranap.tgl_perawatan,pemeriksaan_ranap.jam_rawat,pemeriksaan_ranap.suhu_tubuh,pemeriksaan_ranap.tensi,pemeriksaan_ranap.nadi,pemeriksaan_ranap.respirasi,pemeriksaan_ranap.tinggi,pemeriksaan_ranap.berat,pemeriksaan_ranap.gcs,pemeriksaan_ranap.spo2,pemeriksaan_ranap.kesadaran,pemeriksaan_ranap.keluhan,pemeriksaan_ranap.pemeriksaan,pemeriksaan_ranap.alergi,pemeriksaan_ranap.rtl,pemeriksaan_ranap.penilaian,pemeriksaan_ranap.instruksi,pemeriksaan_ranap.evaluasi,pemeriksaan_ranap.nip,pegawai.jbtn,pegawai.nama')->join('pegawai', 'pegawai.nik=pemeriksaan_ranap.nip')->notLike('pemeriksaan_ranap.keluhan', '::')->notLike('pemeriksaan_ranap.penilaian', '::')->notLike('pemeriksaan_ranap.pemeriksaan', '::')->notLike('pemeriksaan_ranap.pemeriksaan', '::')->notLike('pemeriksaan_ranap.rtl', '::')->notLike('pemeriksaan_ranap.instruksi', '::')->where('pemeriksaan_ranap.no_rawat', $tampilIdentitas[$px2]->no_rawat);
+                                                    $query_ranap = $builder->get()->getResult();
+                                                    //End Query SOAPIE pemeriksaan rawat inap
+                                                    // var_dump($query_ranap);
                                                     ?>
                                                     <?php
-                                                    echo '<table class="table table-bordered table-responsive-lg table-sm">';
-                                                    echo '<thead class="thead-light">
+                                                    if (!empty($query_ralan) || !empty($query_ranap)) {
+                                                        echo '<table class="table table-bordered table-responsive-lg table-sm">';
+                                                        echo '<thead class="table-info">
                                                             <tr>
                                                                 <th scope="col-3" class="text-center">Tanggal</th>
-                                                                <th scope="col" class="text-center">Dokter/Paramedis</th>
-                                                                <th scope="col" class="text-center">Subjek</th>
-                                                                <th scope="col" class="text-center">Objek</th>
-                                                                <th scope="col" class="text-center">Asesmen</th>
-                                                                <th scope="col-2" class="text-center">Plan</th>
-                                                                <th scope="col" class="text-center">Instruksi</th>
-                                                                <th scope="col" class="text-center">Evaluasi</th>
+                                                                <th class="text-center">Dokter/Paramedis</th>
+                                                                <th class="text-center">Subjek</th>
+                                                                <th class="text-center">Objek</th>
+                                                                <th class="text-center">Asesmen</th>
+                                                                <th class="text-center">Plan</th>
+                                                                <th class="text-center">Instruksi</th>
+                                                                <th class="text-center">Evaluasi</th>
                                                             </tr>
                                                         </thead>';
-                                                    echo '<tbody>';
-                                                    //cek SOAPIE rawat inap dan rawat jalan
-                                                    if ($tampilIdentitas[$px2]->status_lanjut == 'Ralan') {
+                                                        echo '<tbody>';
+                                                        //cek SOAPIE rawat inap dan rawat jalan
+                                                        if ($tampilIdentitas[$px2]->status_lanjut == 'Ralan') {
+                                                            //SOAPIE rawat jalan
+                                                            foreach ($query_ralan as $pr) {
+                                                                $alergi = ($pr->alergi != "") ? '<br>Alergi :' . $pr->alergi : "";
+                                                                $suhu_tubuh = ($pr->suhu_tubuh != "") ? '<br>Suhu(C) :' . $pr->suhu_tubuh : "";
+                                                                $tensi = ($pr->tensi != "") ? '<br>Tensi :' . $pr->tensi : "";
+                                                                $nadi = ($pr->nadi != "") ? '<br>Nadi :' . $pr->nadi : "";
+                                                                $tinggi = ($pr->tinggi != "") ? '<br>Tinggi(Cm) :' . $pr->tinggi : "";
+                                                                $berat = ($pr->berat != "") ? '<br>Berat(Kg) :' . $pr->berat : "";
+                                                                $gcs = ($pr->gcs != "") ? '<br>GCS(E,V,M) :' . $pr->gcs : "";
+                                                                $spo2 = ($pr->spo2 != "") ? '<br>SpO2(%) :' . $pr->spo2 : "";
+                                                                $kesadaran = ($pr->kesadaran != "") ? '<br>Kesadaran :' . $pr->kesadaran  : "";
+                                                                $lingkar_perut = ($pr->lingkar_perut != "") ? '<br>Lingkar Perut :' : "";
 
-                                                        foreach ($query_ralan as $pr) {
-                                                            $alergi = ($pr->alergi != "") ? '<br>Alergi :' . $pr->alergi : "";
-                                                            $suhu_tubuh = ($pr->suhu_tubuh != "") ? '<br>Suhu(C) :' . $pr->suhu_tubuh : "";
-                                                            $tensi = ($pr->tensi != "") ? '<br>Tensi :' . $pr->tensi : "";
-                                                            $nadi = ($pr->nadi != "") ? '<br>Nadi :' . $pr->nadi : "";
-                                                            $tinggi = ($pr->tinggi != "") ? '<br>Tinggi(Cm) :' . $pr->tinggi : "";
-                                                            $berat = ($pr->berat != "") ? '<br>Berat(Kg) :' . $pr->berat : "";
-                                                            $gcs = ($pr->gcs != "") ? '<br>GCS(E,V,M)' : "";
-                                                            $spo2 = ($pr->spo2 != "") ? '<br>SpO2(%) :' . $pr->spo2 : "";
-                                                            $kesadaran = ($pr->kesadaran != "") ? '<br>Kesadaran :' . $pr->kesadaran  : "";
-                                                            $lingkar_perut = ($pr->lingkar_perut != "") ? '<br>Lingkar Perut :' : "";
-
-                                                            echo '<tr>
+                                                                echo '<tr>
                                                                 <td scope="row" class="text-center text-nowrap">' . $pr->tgl_perawatan . '<br>' . $pr->jam_rawat . '</td>
                                                                 <td class="text-center text-nowrap">' . $pr->nip . '<br>' . $pr->nama . '</td>
                                                                 <td>' . $pr->keluhan . '</td>
@@ -211,11 +197,47 @@ $db = \Config\Database::connect(); ?>
                                                                 <td>' . $pr->instruksi . '</td>
                                                                 <td>' . $pr->evaluasi . '</td>
                                                             </tr>';
+                                                            }
+                                                        } elseif ($tampilIdentitas[$px2]->status_lanjut == 'Ranap') {
+                                                            //SOAPIE rawat inap
+                                                            foreach ($query_ranap as $pi) {
+                                                                $alergi = ($pi->alergi != "") ? '<br>Alergi :' . $pi->alergi : "";
+                                                                $suhu_tubuh = ($pi->suhu_tubuh != "") ? '<br>Suhu(C) :' . $pi->suhu_tubuh : "";
+                                                                $tensi = ($pi->tensi != "") ? '<br>Tensi :' . $pi->tensi : "";
+                                                                $nadi = ($pi->nadi != "") ? '<br>Nadi :' . $pi->nadi : "";
+                                                                $tinggi = ($pi->tinggi != "") ? '<br>Tinggi(Cm) :' . $pi->tinggi : "";
+                                                                $berat = ($pi->berat != "") ? '<br>Berat(Kg) :' . $pi->berat : "";
+                                                                $gcs = ($pi->gcs != "") ? '<br>GCS(E,V,M) :' . $pi->gcs : "";
+                                                                $spo2 = ($pi->spo2 != "") ? '<br>SpO2(%) :' . $pi->spo2 : "";
+                                                                $kesadaran = ($pi->kesadaran != "") ? '<br>Kesadaran :' . $pi->kesadaran  : "";
+                                                                // $lingkar_perut = ($pi->lingkar_perut != "") ? '<br>Lingkar Perut :' : "";
+                                                                echo '<tr>
+                                                                <td scope="row" class="text-center text-nowrap">' . $pi->tgl_perawatan . '<br>' . $pi->jam_rawat . '</td>
+                                                                <td class="text-center text-nowrap">' . $pi->nip . '<br>' . $pi->nama . '</td>
+                                                                <td>' . $pi->keluhan . '</td>
+                                                                <td>
+                                                                ' . $pi->pemeriksaan . '
+                                                                 ' . $alergi . '
+                                                                    ' . $suhu_tubuh . '
+                                                                    ' . $tensi . '
+                                                                    ' . $nadi . '
+                                                                    ' . $tinggi . '
+                                                                    ' . $berat . '
+                                                                    ' . $spo2 . '
+                                                                    ' . $gcs . '
+                                                                    ' . $kesadaran . '
+                                                                </td>
+                                                                <td>' . $pi->penilaian . '</td>
+                                                                <td>' . $pi->rtl . '</td>
+                                                                <td>' . $pi->instruksi . '</td>
+                                                                <td>' . $pi->evaluasi . '</td>
+                                                            </tr>';
+                                                            }
                                                         }
+                                                        //End cek SOAPIE
+                                                        echo '</tbody>';
+                                                        echo '</table>';
                                                     }
-                                                    //End cek SOAPIE
-                                                    echo '</tbody>';
-                                                    echo '</table>';
                                                     ?>
                                                 </td>
                                             </tr>
@@ -231,48 +253,83 @@ $db = \Config\Database::connect(); ?>
                         <div class="card">
                             <div class="card-body">
                                 <table class="table table-bordered table-responsive-lg table-sm">
-                                    <thead class="thead-light">
+                                    <thead class="bg-info">
                                         <tr>
-                                            <th scope="col">Tgl.Reg</th>
-                                            <th scope="col">No.Rawat</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col" class="text-center">S.B.A.R</th>
+                                            <th class="text-center">Tgl.Reg</th>
+                                            <th class="text-center">No.Rawat</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center" class="text-center">S.B.A.R</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>
-                                                <!-- tabel data riwayat SBAR -->
-                                                <table class="table table-bordered table-responsive-lg table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">Tanggal</th>
-                                                            <th scope="col">Dokter/Paramedis</th>
-                                                            <th scope="col">Situation</th>
-                                                            <th scope="col">Background</th>
-                                                            <th scope="col">Asesment</th>
-                                                            <th scope="col">Recomendation</th>
-                                                            <th scope="col">Instruksi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <!-- End tabel riwayat SBAR -->
-                                            </td>
-                                        </tr>
+                                        <?php for ($px3 = 0; $px3 < count($tampilIdentitas); $px3++): ?>
+                                            <tr>
+                                                <td class="text-nowrap"><?= $tampilIdentitas[$px3]->tgl_registrasi ?></td>
+                                                <td><?= $tampilIdentitas[$px3]->no_rawat ?></td>
+                                                <td><?= $tampilIdentitas[$px3]->status_lanjut ?></td>
+                                                <td>
+                                                    <?php
+                                                    //Query SBAR pemeriksaan rawat jalan
+                                                    $builder = $db->table('pemeriksaan_ralan')
+                                                        ->select('pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat,pemeriksaan_ralan.keluhan,pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.rtl,pemeriksaan_ralan.penilaian,pemeriksaan_ralan.instruksi,pemeriksaan_ralan.evaluasi,pemeriksaan_ralan.nip,pegawai.jbtn,pegawai.nama')->join('pegawai', 'pegawai.nik=pemeriksaan_ralan.nip')->Like('pemeriksaan_ralan.keluhan', '::')->Like('pemeriksaan_ralan.penilaian', '::')->Like('pemeriksaan_ralan.pemeriksaan', '::')->Like('pemeriksaan_ralan.pemeriksaan', '::')->Like('pemeriksaan_ralan.rtl', '::')->Like('pemeriksaan_ralan.instruksi', '::')->where('pemeriksaan_ralan.no_rawat', $tampilIdentitas[$px3]->no_rawat);
+                                                    $sbar_ralan = $builder->get()->getResult();
+                                                    //End Query SBAR pemeriksaan rawat jalan
+                                                    //Query SBAR pemeriksaan rawat inap
+                                                    $builder = $db->table('pemeriksaan_ranap')
+                                                        ->select('pemeriksaan_ranap.tgl_perawatan,pemeriksaan_ranap.jam_rawat,pemeriksaan_ranap.keluhan,pemeriksaan_ranap.pemeriksaan,pemeriksaan_ranap.alergi,pemeriksaan_ranap.rtl,pemeriksaan_ranap.penilaian,pemeriksaan_ranap.instruksi,pemeriksaan_ranap.evaluasi,pemeriksaan_ranap.nip,pegawai.jbtn,pegawai.nama')->join('pegawai', 'pegawai.nik=pemeriksaan_ranap.nip')->Like('pemeriksaan_ranap.keluhan', '::')->Like('pemeriksaan_ranap.penilaian', '::')->Like('pemeriksaan_ranap.pemeriksaan', '::')->Like('pemeriksaan_ranap.pemeriksaan', '::')->Like('pemeriksaan_ranap.rtl', '::')->Like('pemeriksaan_ranap.instruksi', '::')->where('pemeriksaan_ranap.no_rawat', $tampilIdentitas[$px3]->no_rawat);
+                                                    $sbar_ranap = $builder->get()->getResult();
+                                                    //End Query SBAR pemeriksaan rawat inap
+                                                    // var_dump($sbar_ranap);
+                                                    ?>
+                                                    <!-- tabel data riwayat SBAR -->
+                                                    <?php
+                                                    if (!empty($sbar_ralan) || !empty($sbar_ranap)) {
+                                                        echo '<table class="table table-bordered table-responsive-lg table-sm">';
+                                                        echo '<thead class="table-info">
+                                                            <tr>
+                                                                <th class="text-center">Tanggal</th>
+                                                                <th class="text-center">Dokter/Paramedis</th>
+                                                                <th class="text-center">Situation</th>
+                                                                <th class="text-center">Background</th>
+                                                                <th class="text-center">Asesment</th>
+                                                                <th class="text-center">Recomendation</th>
+                                                                <th class="text-center">Instruksi</th>
+                                                            </tr>
+                                                        </thead>';
+                                                        echo '<tbody>';
+                                                        if ($tampilIdentitas[$px3]->status_lanjut == 'Ranap') {
+                                                            foreach ($sbar_ranap as $sr) {
+                                                                echo '<tr>
+                                                                <td class="text-nowrap text-center">' . $sr->tgl_perawatan . '<br>' . $sr->jam_rawat . '</td>
+                                                                <td class="text-center text-nowrap">' . $sr->nip . '<br>' . $sr->nama . '</td>
+                                                                <td>' . $sr->keluhan . '</td>
+                                                                <td>' . $sr->pemeriksaan . '</td>
+                                                                <td>' . $sr->penilaian . '</td>
+                                                                <td>' . $sr->rtl . '</td>
+                                                                <td>' . $sr->instruksi . '</td>
+                                                            </tr>';
+                                                            }
+                                                        } elseif ($tampilIdentitas[$px3]->status_lanjut == 'Ralan') {
+                                                            foreach ($sbar_ralan as $sl) {
+                                                                echo '<tr>
+                                                                <td class="text-nowrap text-center">' . $sl->tgl_perawatan . '<br>' . $sl->jam_rawat . '</td>
+                                                                <td class="text-center text-nowrap">' . $sl->nip . '<br>' . $sl->nama . '</td>
+                                                                <td>' . $sl->keluhan . '</td>
+                                                                <td>' . $sl->pemeriksaan . '</td>
+                                                                <td>' . $sl->penilaian . '</td>
+                                                                <td>' . $sl->rtl . '</td>
+                                                                <td>' . $sl->instruksi . '</td>
+                                                            </tr>';
+                                                            }
+                                                        }
+                                                        echo '</tbody>';
+                                                        echo '</table>';
+                                                    };
+                                                    ?>
+                                                    <!-- End tabel riwayat SBAR -->
+                                                </td>
+                                            </tr>
+                                        <?php endfor; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -284,7 +341,7 @@ $db = \Config\Database::connect(); ?>
                         <div class="card">
                             <div class="card-body">
                                 <table class="table table-bordered table-responsive-lg table-sm">
-                                    <thead class="thead-light">
+                                    <thead class="bg-info">
                                         <tr>
                                             <th scope="col">Tgl.Reg</th>
                                             <th scope="col">No.Rawat</th>
@@ -293,37 +350,39 @@ $db = \Config\Database::connect(); ?>
                                     </thead>
                                     <tbody>
                                         <!-- tabel data riwayat diagnosa -->
-                                        <?php for ($px = 0; $px < count($tampilIdentitas); $px++): ?>
+                                        <?php for ($px = 0; $px < count($tampilIdentitas2); $px++): ?>
                                             <tr>
-                                                <td><?= $tampilIdentitas[$px]->tgl_registrasi ?></td>
-                                                <td><?= $tampilIdentitas[$px]->no_rawat ?></td>
+                                                <td><?= $tampilIdentitas2[$px]->tgl_registrasi ?></td>
+                                                <td><?= $tampilIdentitas2[$px]->no_rawat ?></td>
                                                 <td>
                                                     <?php
                                                     $builder = $db->table('diagnosa_pasien')
                                                         ->select('diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit,diagnosa_pasien.status')
                                                         ->join('penyakit', 'penyakit.kd_penyakit=diagnosa_pasien.kd_penyakit')
-                                                        ->where('diagnosa_pasien.no_rawat', $tampilIdentitas[$px]->no_rawat);
+                                                        ->where('diagnosa_pasien.no_rawat', $tampilIdentitas2[$px]->no_rawat);
                                                     $query = $builder->get()->getResult();
-
-                                                    echo '<table class="table table-bordered table-responsive-lg table-sm">
-                                                        <thead class="thead-light">
+                                                    if (!empty($query)) {
+                                                        echo '<table class="table table-bordered table-responsive-lg table-sm">
+                                                        <thead class="table-info">
                                                             <tr>
                                                                 <th scope="col">Kode Penyakit</th>
                                                                 <th scope="col">Nama Penyakit</th>
                                                                 <th scope="col">Status</th>
                                                             </tr>
                                                         </thead>';
-                                                    echo '<tbody>';
-                                                    foreach ($query as $dx) {
-                                                        echo '
+                                                        echo '<tbody>';
+                                                        foreach ($query as $dx) {
+                                                            echo '
                                                                         <tr>
                                                                         <td scope="col">' . $dx->kd_penyakit . '</td>
                                                                         <td scope="col">' . $dx->nm_penyakit . '</td>
                                                                         <td scope="col">' . $dx->status . '</td>
                                                                         </tr>';
-                                                    };
-                                                    echo '</tbody>';
-                                                    echo '</table>';
+                                                        };
+                                                        echo '</tbody>';
+                                                        echo '</table>';
+                                                    }
+
                                                     ?>
                                                     <!-- End tabel riwayat diagnosa -->
                                                 </td>

@@ -12,7 +12,7 @@ class RiwayatModel extends Model
 
 
         $builder = $this->db->table('kamar_inap');
-        $builder->select("kamar_inap.no_rawat,kamar_inap.tgl_masuk,bangsal.nm_bangsal,replace(reg_periksa.no_rkm_medis, '.', '') as no_rkm_medis, pasien.nm_pasien, dokter.nm_dokter,kamar_inap.stts_pulang");
+        $builder->select("kamar_inap.no_rawat,kamar_inap.tgl_masuk,bangsal.nm_bangsal,pasien.no_rkm_medis, pasien.nm_pasien, dokter.nm_dokter,kamar_inap.stts_pulang");
         $builder->join('kamar', 'kamar_inap.kd_kamar=kamar.kd_kamar', 'inner');
         $builder->join('bangsal', 'kamar.kd_bangsal=bangsal.kd_bangsal', 'inner');
         $builder->join('reg_periksa', 'kamar_inap.no_rawat=reg_periksa.no_rawat', 'inner');
@@ -49,7 +49,7 @@ class RiwayatModel extends Model
     {
 
         $builder = $this->db->table('kamar_inap');
-        $builder->select('kamar_inap.no_rawat,kamar_inap.tgl_masuk,bangsal.nm_bangsal,reg_periksa.no_rkm_medis, pasien.nm_pasien, dokter.nm_dokter,kamar_inap.stts_pulang');
+        $builder->select('kamar_inap.no_rawat,kamar_inap.tgl_masuk,bangsal.nm_bangsal,pasien.no_rkm_medis, pasien.nm_pasien, dokter.nm_dokter,kamar_inap.stts_pulang');
         $builder->join('kamar', 'kamar_inap.kd_kamar=kamar.kd_kamar', 'inner');
         $builder->join('bangsal', 'kamar.kd_bangsal=bangsal.kd_bangsal', 'inner');
         $builder->join('reg_periksa', 'kamar_inap.no_rawat=reg_periksa.no_rawat', 'inner');

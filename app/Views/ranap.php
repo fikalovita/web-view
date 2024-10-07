@@ -38,29 +38,30 @@
 
                             </div>
                         </div>
+                        <table class="table table-responsive-lg table-bordered table-sm table-hover mt-3" id="riwayat_ranap">
+                            <thead class="thead-light">
+                                <tr>
+                                    <!-- <th scope="col">#</th> -->
+                                    <th scope="col">No.Rawat</th>
+                                    <th scope="col">Tgl.Masuk</th>
+                                    <th scope="col">Nama Dokter/DPJP</th>
+                                    <th scope="col">NO.RM</th>
+                                    <th scope="col">Nama Pasien</th>
+                                    <th scope="col">Kamar</th>
+                                    <th scope="col">Status Pulang</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
-                    <table class="table table-responsive-lg table-bordered table-sm table-hover mt-3" id="riwayat_ranap">
-                        <thead class="thead-light">
-                            <tr>
-                                <!-- <th scope="col">#</th> -->
-                                <th scope="col">No.Rawat</th>
-                                <th scope="col">Tgl.Masuk</th>
-                                <th scope="col">Nama Dokter/DPJP</th>
-                                <th scope="col">NO.RM</th>
-                                <th scope="col">Nama Pasien</th>
-                                <th scope="col">Kamar</th>
-                                <th scope="col">Status Pulang</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
                 </div>
-            </div><!-- /.card -->
-        </div>
+            </div>
+        </div><!-- /.card -->
     </div>
-    <!-- /.row -->
+</div>
+<!-- /.row -->
 </div><!-- /.container-fluid -->
 </div>
 <?= $this->endSection() ?>
