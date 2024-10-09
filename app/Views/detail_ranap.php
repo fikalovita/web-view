@@ -6,13 +6,13 @@ $db = \Config\Database::connect() ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card card-info card-outline">
                     <div class="card-body">
                         <form action="#" method="post">
                             <fieldset disabled>
                                 <div class="row">
                                     <?php foreach ($riwayat_ranap as $key => $value) : ?>
-                                        <table class="table table-borderless table-responsive-md">
+                                        <table class="table table-borderless table-responsive-md table-sm">
                                             <tbody>
                                                 <tr>
                                                     <td>No.RM</td>
@@ -115,7 +115,7 @@ $db = \Config\Database::connect() ?>
                     <div class="tab-pane fade" id="nav-soap" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm">
+                                <table class="table table-bordered table-responsive table-sm">
                                     <thead class="bg-info">
                                         <tr>
                                             <th scope="col" class="text-center">Tgl.Reg</th>
@@ -146,7 +146,7 @@ $db = \Config\Database::connect() ?>
                                                     ?>
                                                     <?php
                                                     if (!empty($query_ralan) || !empty($query_ranap)) {
-                                                        echo '<table class="table table-bordered table-responsive-lg table-sm">';
+                                                        echo '<table class="table table-bordered table-responsive-md table-sm">';
                                                         echo '<thead class="table-info">
                                                             <tr>
                                                                 <th scope="col-3" class="text-center">Tanggal</th>
@@ -252,7 +252,7 @@ $db = \Config\Database::connect() ?>
                     <div class="tab-pane fade" id="nav-sbar" role="tabpanel" aria-labelledby="nav-contact-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm">
+                                <table class="table table-bordered table-responsive table-sm">
                                     <thead class="bg-info">
                                         <tr>
                                             <th class="text-center">Tgl.Reg</th>
@@ -399,48 +399,150 @@ $db = \Config\Database::connect() ?>
                         <div class="card">
                             <div class="card-body">
                                 <table class="table table-bordered table-responsive-lg table-sm">
-                                    <thead class="thead-light">
+                                    <thead class="bg-info">
+
                                         <tr>
-                                            <th scope="col">Tgl.Reg</th>
-                                            <th scope="col">No.Rawat</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col" class="text-center">Laboratorium</th>
+                                            <th class="text-center">No</th>
+                                            <th scope="col" class="text-center">Pemeriksaan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>
-                                                <table class="table table-bordered table-responsive-lg table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">Tanggal</th>
-                                                            <th scope="col">Dokter/Paramedis</th>
-                                                            <th scope="col">Subjek</th>
-                                                            <th scope="col">Objek</th>
-                                                            <th scope="col">Asesmen</th>
-                                                            <th scope="col">Plan</th>
-                                                            <th scope="col">Instruksi</th>
-                                                            <th scope="col">Evaluasi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
+                                        <?php $no = 1 ?>
+                                        <?php for ($lab = 0; $lab < count($pasienLaborat); $lab++): ?>
+                                            <?php
+                                            //query jika pasien rawat inap
+                                            $builder = $db->table('dpjp_ranap')->select('dokter.nm_dokter')->join('dokter', 'dpjp_ranap.kd_dokter=dokter.kd_dokter')->where('dpjp_ranap.no_rawat', $pasienLaborat[$lab]->no_rawat);
+                                            $dokter_dpjp = $builder->get()->getResult();
+                                            //query periksa lab get tgl dan jam
+                                            $builder = $db->table('periksa_lab')->select('periksa_lab.tgl_periksa,periksa_lab.jam,concat(periksa_lab.tgl_periksa, periksa_lab.jam) as tgl_jam')
+                                                ->where('periksa_lab.kategori <>', 'PA')->where('periksa_lab.no_rawat', $pasienLaborat[$lab]->no_rawat)->groupBy('tgl_jam')->orderBy('periksa_lab.tgl_periksa', 'DESC');
+                                            $lab2 = $builder->get()->getResult();
+                                            var_dump($lab2);
+                                            ?>
+                                            <tr>
+                                                <th scope="row" class="text-center"><?= $no++ ?></th>
+                                                <td>
+                                                    <table class="table table-responsive-md table-sm">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>No.Rawat</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->no_rawat ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>No.Registrasi</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->no_reg ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Tgl.Registrasi</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->tgl_registrasi ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Umur Saat Daftar</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->umurdaftar . ' ' . $pasienLaborat[$lab]->sttsumur ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Unit/Poliklinik</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->nm_poli ?></td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Nama Dokter</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->nm_dokter ?></td>
+                                                            </tr>
+                                                            <?php
+                                                            if ($pasienLaborat[$lab]->status_lanjut == 'Ranap') {
+                                                                $no = 1;
+                                                                foreach ($dokter_dpjp as $dp) {
+                                                                    echo '<tr>
+                                                                        <td>DPJP Ranap</td>
+                                                                        <td class="text-center">:</td>
+                                                                        <td>' . $no++ . '. ' . $dp->nm_dokter . '</td>
+                                                                    </tr>';
+                                                                }
+                                                            }
+                                                            ?>
+                                                            <tr>
+                                                                <td>Cara Bayar</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->png_jawab ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Penanggung Jawab</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->p_jawab ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Alamat P.J</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->almt_pj ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Hubungan P.J</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->hubunganpj ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Status</td>
+                                                                <td class="text-center">:</td>
+                                                                <td><?= $pasienLaborat[$lab]->status_lanjut ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Biaya & Perawatan</td>
+                                                                <td class="text-center">:</td>
+                                                                <td>
+                                                                    <table class="table table-responsive-lg table-sm">
+                                                                        <tr>
+                                                                            <td>Administrasi</td>
+                                                                            <td class="text-center">:</td>
+                                                                            <td class="text-right"><?= number_format($pasienLaborat[$lab]->biaya_reg, 2, ',', '.')  ?></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <table class="table table-responsive-lg table-sm">
+                                                                        <tr>
+                                                                            <td colspan="7"><b>Pemeriksaan Laboratorium PK & MB</b></td>
+                                                                        </tr>
+                                                                        <tr class="table-info">
+                                                                            <td>Tanggal</td>
+                                                                            <td>Kode</td>
+                                                                            <td>Nama Pemeriksaan</td>
+                                                                            <td>Dokter PJ</td>
+                                                                            <td>Petugas</td>
+                                                                            <td>Biaya</td>
+                                                                        </tr>
+                                                                        <?php
+                                                                        //query get nama perawatan, petugas,biaya,dokter
+                                                                        for ($a = 0; $a < count($lab2); $a++) {
+                                                                            $builder = $db->table('periksa_lab')->select('periksa_lab.kd_jenis_prw,jns_perawatan_lab.nm_perawatan,petugas.nama,periksa_lab.biaya,periksa_lab.dokter_perujuk,dokter.nm_dokter')->join('petugas', 'periksa_lab.nip=petugas.nip', 'inner')->join('dokter', 'periksa_lab.kd_dokter=dokter.kd_dokter')->join('jns_perawatan_lab', 'periksa_lab.kd_jenis_prw=jns_perawatan_lab.kd_jenis_prw')->where('periksa_lab.kategori <>', 'PA')->where('periksa_lab.no_rawat', $pasienLaborat[$lab]->no_rawat)
+                                                                                ->where('periksa_lab.tgl_periksa', $lab2[$a]->tgl_periksa)->where('periksa_lab.jam', $lab2[$a]->jam);
+                                                                            $lab3 = $builder->get()->getResult();
+                                                                            foreach ($lab3 as $b) {
+                                                                                echo '<tr>';
+                                                                                echo '<td>' . $lab2[$a]->tgl_jam . '</td>
+                                                                                <td>' . $b->kd_jenis_prw . '</td>
+                                                                                <td>' . $b->nm_perawatan . '</td>
+                                                                                <td>' . $b->nm_dokter . '</td>
+                                                                                <td>' . $b->nama . '</td>
+                                                                                <td>' . number_format($b->biaya, 2, ',', '.') . '</td>';
+                                                                                echo '</tr>';
+                                                                            }
+                                                                            var_dump($lab2[$a]->tgl_jam);
+                                                                        }
+                                                                        ?>
+
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        <?php endfor; ?>
                                     </tbody>
                                 </table>
                             </div>

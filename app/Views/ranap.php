@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card card-primary card-outline">
+                <div class="card card-info card-outline">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6"></div>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <table class="table table-responsive-lg table-bordered table-sm table-hover mt-3" id="riwayat_ranap">
-                            <thead class="thead-light">
+                            <thead class="table-info">
                                 <tr>
                                     <!-- <th scope="col">#</th> -->
                                     <th scope="col">No.Rawat</th>

@@ -58,8 +58,7 @@ class DetailRanapModel extends Model
         $builder = $this->db->table('reg_periksa');
         $builder->select('reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.status_lanjut');
         $builder->where('reg_periksa.stts <>', 'Batal');
-        $builder->like('reg_periksa.no_rkm_medis', $no_rkm_medis);
-        // $builder->groupBy('reg_periksa.tgl_registrasi');
+        $builder->where('reg_periksa.no_rkm_medis', $no_rkm_medis);
         $builder->orderBy('reg_periksa.tgl_registrasi', 'DESC');
         $builder->limit(5);
 
@@ -70,21 +69,25 @@ class DetailRanapModel extends Model
         $builder = $this->db->table('reg_periksa');
         $builder->select('reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.status_lanjut');
         $builder->where('reg_periksa.stts <>', 'Batal');
-        $builder->like('reg_periksa.no_rkm_medis', $no_rkm_medis);
+        $builder->where('reg_periksa.no_rkm_medis', $no_rkm_medis);
         $builder->groupBy('reg_periksa.tgl_registrasi');
         $builder->orderBy('reg_periksa.tgl_registrasi', 'DESC');
         $builder->limit(5);
 
         return $builder->get();
     }
-    // function tampilDiagnosa($tampilIdentitas)
-    // {
-    //     for ($i = 0; $i < count($tampilIdentitas); $i++) {
-    //         $builder = $this->db->table('diagnosa_pasien');
-    //         $builder->select('diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit,diagnosa_pasien.status');
-    //         $builder->join('penyakit', 'penyakit.kd_penyakit=diagnosa_pasien.kd_penyakit');
-    //         $builder->where('diagnosa_pasien.no_rawat', $tampilIdentitas[$i]->no_rawat);
-    //     }
-    //     return $builder->get();
-    // }
+
+    function pasienLaborat($no_rkm_medis)
+    {
+        $builder = $this->db->table('reg_periksa');
+        $builder->select('reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab,reg_periksa.umurdaftar,reg_periksa.sttsumur,reg_periksa.p_jawab,dokter.nm_dokter,poliklinik.nm_poli,reg_periksa.almt_pj');
+        $builder->join('dokter', 'reg_periksa.kd_dokter=dokter.kd_dokter', 'inner');
+        $builder->join('poliklinik', 'reg_periksa.kd_poli=poliklinik.kd_poli', 'inner');
+        $builder->join('penjab', 'reg_periksa.kd_pj=penjab.kd_pj');
+        $builder->where('reg_periksa.stts <>', 'Batal');
+        $builder->where('reg_periksa.no_rkm_medis', $no_rkm_medis);
+        $builder->orderBy('reg_periksa.tgl_registrasi', 'DESC');
+        $builder->limit(5);
+        return $builder->get();
+    }
 }

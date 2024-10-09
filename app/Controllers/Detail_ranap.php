@@ -8,7 +8,6 @@ class Detail_ranap extends BaseController
 {
     public function index($no_rawat)
     {
-        $array =  array();
         $uri = current_url(true);
         $DetailRanapModel = new DetailRanapModel;
         $no_rawat = $uri->getSegment(2);
@@ -17,8 +16,9 @@ class Detail_ranap extends BaseController
         $no_rkm_medis  = $riwayat_ranap[0]->no_rkm_medis;
         $tampilIdentitas = $DetailRanapModel->tampilIdentitas($no_rkm_medis)->getResult();
         $tampilIdentitas2 = $DetailRanapModel->tampilIdentitas2($no_rkm_medis)->getResult();
-        // $tampilDiagnosa = $DetailRanapModel->tampilDiagnosa($tampilIdentitas)->getResult();
-        // dd($tampilDiagnosa);
+        $pasienLaborat = $DetailRanapModel->pasienLaborat($no_rkm_medis)->getResult();
+
+
         $data = ['no_rawat' => (int) $no_rawat];
         $data = [
             'title' => 'Riwayat Rawat Inap',
@@ -26,7 +26,7 @@ class Detail_ranap extends BaseController
             'riwayat_kunjungan' => $riwayat_kunjungan,
             'tampilIdentitas' => $tampilIdentitas,
             'tampilIdentitas2' => $tampilIdentitas2,
-
+            'pasienLaborat' => $pasienLaborat
 
         ];
 
