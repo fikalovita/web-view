@@ -252,7 +252,7 @@ $db = \Config\Database::connect() ?>
                     <div class="tab-pane fade" id="nav-sbar" role="tabpanel" aria-labelledby="nav-contact-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive table-sm">
+                                <table class="table table-bordered table-responsive-lg table-sm">
                                     <thead class="bg-info">
                                         <tr>
                                             <th class="text-center">Tgl.Reg</th>
@@ -284,7 +284,7 @@ $db = \Config\Database::connect() ?>
                                                     <!-- tabel data riwayat SBAR -->
                                                     <?php
                                                     if (!empty($sbar_ralan) || !empty($sbar_ranap)) {
-                                                        echo '<table class="table table-bordered table-responsive-lg table-sm">';
+                                                        echo '<table class="table table-bordered table-responsive table-sm">';
                                                         echo '<thead class="table-info">
                                                             <tr>
                                                                 <th class="text-center">Tanggal</th>
@@ -373,11 +373,11 @@ $db = \Config\Database::connect() ?>
                                                         echo '<tbody>';
                                                         foreach ($query as $dx) {
                                                             echo '
-                                                                        <tr>
-                                                                        <td scope="col">' . $dx->kd_penyakit . '</td>
-                                                                        <td scope="col">' . $dx->nm_penyakit . '</td>
-                                                                        <td scope="col">' . $dx->status . '</td>
-                                                                        </tr>';
+                                                                <tr>
+                                                                <td scope="col">' . $dx->kd_penyakit . '</td>
+                                                                <td scope="col">' . $dx->nm_penyakit . '</td>
+                                                                <td scope="col">' . $dx->status . '</td>
+                                                                </tr>';
                                                         };
                                                         echo '</tbody>';
                                                         echo '</table>';
@@ -413,14 +413,14 @@ $db = \Config\Database::connect() ?>
                                             //query jika pasien rawat inap
                                             $builder = $db->table('dpjp_ranap')->select('dokter.nm_dokter')->join('dokter', 'dpjp_ranap.kd_dokter=dokter.kd_dokter')->where('dpjp_ranap.no_rawat', $pasienLaborat[$lab]->no_rawat);
                                             $dokter_dpjp = $builder->get()->getResult();
-
-
-
-
+                                            //query periksa lab get tgl dan jam
+                                            $lab2 = $db->query("select periksa_lab.tgl_periksa,periksa_lab.jam from periksa_lab where periksa_lab.kategori <> 'PA' and periksa_lab.no_rawat='" . $pasienLaborat[$lab]->no_rawat . " ' group by concat(periksa_lab.no_rawat,periksa_lab.tgl_periksa,periksa_lab.jam) order by periksa_lab.tgl_periksa,periksa_lab.jam ");
+                                            $result = $lab2->getResult();
                                             ?>
                                             <tr>
                                                 <th scope="row" class="text-center"><?= $no++ ?></th>
                                                 <td>
+                                                    <!-- Tabel Identitas pasien dan biaya administrasi -->
                                                     <table class="table table-responsive-md table-sm">
                                                         <tbody>
                                                             <tr>
@@ -447,10 +447,9 @@ $db = \Config\Database::connect() ?>
                                                                 <td>Unit/Poliklinik</td>
                                                                 <td class="text-center">:</td>
                                                                 <td><?= $pasienLaborat[$lab]->nm_poli ?></td>
-
                                                             </tr>
                                                             <tr>
-                                                                <td>Nama Dokter</td>
+                                                                <td>Dokter Poli</td>
                                                                 <td class="text-center">:</td>
                                                                 <td><?= $pasienLaborat[$lab]->nm_dokter ?></td>
                                                             </tr>
@@ -499,56 +498,71 @@ $db = \Config\Database::connect() ?>
                                                                         <tr>
                                                                             <td>Administrasi</td>
                                                                             <td class="text-center">:</td>
-                                                                            <td class="text-right"><?= number_format($pasienLaborat[$lab]->biaya_reg, 2, ',', '.')  ?></td>
+                                                                            <td class="text-right"><?= number_format($pasienLaborat[$lab]->biaya_reg, 0, ',', '.')  ?></td>
                                                                         </tr>
                                                                     </table>
-                                                                    <table class="table table-responsive-lg table-sm">
-                                                                        <tr>
-                                                                            <td colspan="7"><b>Pemeriksaan Laboratorium PK & MB</b></td>
-                                                                        </tr>
-                                                                        <tr class="table-info">
+                                                                    <!-- End Tabel identitas pasien dan administrasi -->
+                                                                    <!-- Tabel pemeriksaan laboratorium -->
+                                                                    <?php if (!empty($result)): ?>
+                                                                        <table class="table table-responsive-lg table-sm">
+                                                                            <tr>
+                                                                                <td colspan="7"><b>Pemeriksaan Laboratorium PK & MB</b></td>
+                                                                            </tr>
+                                                                            <tr class="table-info">
+                                                                                <th class="text-center">Tanggal</th>
+                                                                                <th class="text-center">Kode</th>
+                                                                                <th class="text-center">Nama Pemeriksaan</th>
+                                                                                <th class="text-center">Dokter PJ</th>
+                                                                                <th class="text-center">Petugas</th>
+                                                                                <th class="text-center">Biaya</th>
+                                                                            </tr>
+                                                                            <?php
 
-                                                                            <th class="text-center">Tanggal</th>
-                                                                            <th class="text-center">Kode</th>
-                                                                            <th class="text-center">Nama Pemeriksaan</th>
-                                                                            <th class="text-center">Dokter PJ</th>
-                                                                            <th class="text-center">Petugas</th>
-                                                                            <th class="text-center">Biaya</th>
-                                                                        </tr>
-                                                                        <?php
-                                                                        //query periksa lab get tgl dan jam
+                                                                            // query get nama perawatan, petugas,biaya,dokter
 
-                                                                        $lab2 = $db->query("select periksa_lab.tgl_periksa,periksa_lab.jam from periksa_lab where periksa_lab.kategori <> 'PA' and periksa_lab.no_rawat='" . $pasienLaborat[$lab]->no_rawat . " ' group by concat(periksa_lab.no_rawat,periksa_lab.tgl_periksa,periksa_lab.jam) order by periksa_lab.tgl_periksa,periksa_lab.jam ");
-                                                                        $result = $lab2->getResult();
-                                                                        // query get nama perawatan, petugas,biaya,dokter
-                                                                        foreach ($result as  $rs) {
-                                                                            $builder = $db->query("select periksa_lab.tgl_periksa, periksa_lab.kd_jenis_prw,jns_perawatan_lab.nm_perawatan,petugas.nama,periksa_lab.biaya,periksa_lab.dokter_perujuk, dokter.nm_dokter from periksa_lab inner join jns_perawatan_lab on periksa_lab.kd_jenis_prw=jns_perawatan_lab.kd_jenis_prw inner join petugas on periksa_lab.nip=petugas.nip inner join dokter on periksa_lab.kd_dokter=dokter.kd_dokter where periksa_lab.kategori <> 'PA' and periksa_lab.no_rawat='" . $pasienLaborat[$lab]->no_rawat . "' and periksa_lab.tgl_periksa='" . $rs->tgl_periksa . "' and periksa_lab.jam='" . $rs->jam . "' and tgl_periksa in (select tgl_periksa from periksa_lab group by periksa_lab.tgl_periksa)  ");
-                                                                            $lab3 = $builder->getResult();
-                                                                            $i = 1;
-                                                                            echo '<tr><td colspan="6"><b>' . $rs->tgl_periksa . '</b></td></tr>';
-                                                                            foreach ($lab3 as $key2 => $rs2) {
-                                                                                // var_dump(count($lab3));
-                                                                                echo '<tr>
-                                                                                    <td></td>
-                                                                                    <td>' . $rs2->kd_jenis_prw . '</td>
-                                                                                    <td>' . $rs2->nm_perawatan . '</td>
-                                                                                    <td>' . $rs2->nm_dokter . '</td>
-                                                                                    <td>' . $rs2->nama . '</td>
-                                                                                    <td>' . $rs2->biaya . '</td>
-                                                                                    </tr>';
-                                                                                echo '<tr>
-                                                                                     <td></td>
-                                                                                     <td></td>
-                                                                                     <th class="table-info text-center">Detail Pemeriksaan</th>
-                                                                                     <th class="table-info text-center">Hasil</th>
-                                                                                     <th class="table-info text-center">Nilai Rujukan</th>
-                                                                                     <td></td>
-                                                                                    </tr>';
+                                                                            foreach ($result as  $rs) {
+                                                                                $builder = $db->query("select periksa_lab.tgl_periksa, periksa_lab.kd_jenis_prw,jns_perawatan_lab.nm_perawatan,petugas.nama,periksa_lab.biaya,periksa_lab.dokter_perujuk, dokter.nm_dokter from periksa_lab inner join jns_perawatan_lab on periksa_lab.kd_jenis_prw=jns_perawatan_lab.kd_jenis_prw inner join petugas on periksa_lab.nip=petugas.nip inner join dokter on periksa_lab.kd_dokter=dokter.kd_dokter where periksa_lab.kategori <> 'PA' and periksa_lab.no_rawat='" . $pasienLaborat[$lab]->no_rawat . "' and periksa_lab.tgl_periksa='" . $rs->tgl_periksa . "' and periksa_lab.jam='" . $rs->jam . "' and tgl_periksa in (select tgl_periksa from periksa_lab group by periksa_lab.tgl_periksa)  ");
+                                                                                $lab3 = $builder->getResult();
+                                                                                $i = 1;
+                                                                                echo '<tr><td colspan="6"><b>' . $rs->tgl_periksa . ' ' . $rs->jam . '</b></td></tr>';
+                                                                                foreach ($lab3 as $key2 => $rs2) {
+                                                                                    // var_dump(count($lab3));
+                                                                                    echo '<tr>
+                                                                                        <td></td>
+                                                                                        <td>' . $rs2->kd_jenis_prw . '</td>
+                                                                                        <td>' . $rs2->nm_perawatan . '</td>
+                                                                                        <td>' . $rs2->nm_dokter . '</td>
+                                                                                        <td>' . $rs2->nama . '</td>
+                                                                                        <td class="text-right">' . number_format($rs2->biaya, 0, ',') . '</td>
+                                                                                        </tr>';
+                                                                                    echo '<tr>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <th class="table-info text-center">Detail Pemeriksaan</th>
+                                                                                        <th class="table-info text-center">Hasil</th>
+                                                                                        <th class="table-info text-center">Nilai Rujukan</th>
+                                                                                        <td></td>
+                                                                                        </tr>';
+                                                                                    $builder = $db->query('select template_laboratorium.pemeriksaan,detail_periksa_lab.nilai,template_laboratorium.satuan,detail_periksa_lab.keterangan,detail_periksa_lab.nilai_rujukan,detail_periksa_lab.biaya_item
+                                                                                    from detail_periksa_lab inner join template_laboratorium on detail_periksa_lab.id_template=template_laboratorium.id_template where detail_periksa_lab.no_rawat = "' . $pasienLaborat[$lab]->no_rawat . '"
+                                                                                    and detail_periksa_lab.kd_jenis_prw="' . $rs2->kd_jenis_prw . '" and detail_periksa_lab.tgl_periksa="' . $rs->tgl_periksa . '" and detail_periksa_lab.jam="' . $rs->jam . '" order by detail_periksa_lab.kd_jenis_prw,template_laboratorium.urut');
+                                                                                    $hasil = $builder->getResult();
+                                                                                    foreach ($hasil as $h) {
+                                                                                        echo '<tr>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td>' . $h->pemeriksaan . '</td>
+                                                                                        <td>' . $h->nilai . ' ' . $h->satuan . '</td>
+                                                                                        <td>' . $h->nilai_rujukan . '</td>
+                                                                                        <td class="text-right">' . number_format($h->biaya_item, 0, ',') . '</td>
+                                                                                        </tr>';
+                                                                                    }
+                                                                                }
                                                                             }
-                                                                        }
-                                                                        ?>
-
-                                                                    </table>
+                                                                            ?>
+                                                                        </table>
+                                                                    <?php endif; ?>
+                                                                    <!-- End tabel pemeriksaan laboratorium -->
                                                                 </td>
                                                             </tr>
                                                         </tbody>
