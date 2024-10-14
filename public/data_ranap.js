@@ -5,7 +5,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: 'http://localhost:8080/data_riwayat/ranapAjax',
+                    url: 'http://192.168.1.144:8080/data_riwayat/ranapAjax',
                     type: 'POST',
                     data: function (d) {
                         d.start_date = $('#start_date').val();
@@ -58,7 +58,7 @@
 
         function detailRanap(no_rawat) {
 
-            window.location.href = 'http://localhost:8080/detail_ranap/' + no_rawat;
+            window.location.href = 'http://192.168.1.144:8080/detail_ranap/' + no_rawat;
 
             
         }
