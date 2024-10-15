@@ -1,7 +1,6 @@
 <?= $this->extend('layout/template') ?>
 <?= $this->section('content') ?>
-<?php
-$db = \Config\Database::connect() ?>
+<?php $db = \Config\Database::connect() ?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -75,51 +74,53 @@ $db = \Config\Database::connect() ?>
                         <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-lab" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Riwayat Laborat</button>
                     </div>
                 </nav>
-
                 <div class="tab-content" id="nav-tabContent">
                     <!-- Riwayat Kunjungan -->
                     <div class="tab-pane fade show active" id="nav-kunjungan" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm" id="table-kunjungan">
-                                    <thead class="thead-light">
+                                <table class="table table-bordered table-responsive-lg table-sm table-hover" id="table-kunjungan">
+                                    <thead class="bg-info">
                                         <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">No.Rawat</th>
-                                            <th scope="col">Tanggal</th>
-                                            <th scope="col">Jam</th>
-                                            <th scope="col">Dokter Dituju/DPJP</th>
-                                            <th scope="col">Umur</th>
-                                            <th scope="col">Jenis Bayar</th>
+
+                                            <th scope="col" class="text-center">No.Rawat</th>
+                                            <th scope="col" class="text-center">Tanggal</th>
+                                            <th scope="col" class="text-center">Jam</th>
+                                            <th scope="col" class="text-center">Dokter Dituju/DPJP</th>
+                                            <th scope="col" class="text-center">Poliklinik/Kamar</th>
+                                            <th scope="col" class="text-center">Umur</th>
+                                            <th scope="col" class="text-center">Jenis Bayar</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <?php foreach ($riwayat_kunjungan as $rk): ?>
+                                        <?php for ($rk = 0; $rk < count($riwayat_kunjungan); $rk++) : ?>
                                             <?php
                                             $builder = $db->query('select rujukan_internal_poli.kd_dokter,dokter.nm_dokter,rujukan_internal_poli.kd_poli,poliklinik.nm_poli from       rujukan_internal_poli
-                                                inner join dokter on rujukan_internal_poli.kd_dokter=dokter.kd_dokter inner join poliklinik on rujukan_internal_poli.kd_poli=poliklinik.kd_poli where rujukan_internal_poli.no_rawat = "' . $rk->no_rawat . '"');
+                                                inner join dokter on rujukan_internal_poli.kd_dokter=dokter.kd_dokter inner join poliklinik on rujukan_internal_poli.kd_poli=poliklinik.kd_poli where rujukan_internal_poli.no_rawat = "' . $riwayat_kunjungan[$rk]->no_rawat . '"');
                                             $rujukanInternalPoli = $builder->getResult();
+                                            // var_dump($riwayat_kunjungan[$rk]->no_rawat);
                                             ?>
                                             <?php if (!empty($riwayat_kunjungan) || !empty($rujukanInternalPoli)) : ?>
+                                                <?php $no = 1 ?>
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td><?= $rk->no_rawat ?></td>
-                                                    <td><?= $rk->jam_reg ?></td>
-                                                    <td><?= $rk->tgl_registrasi ?></td>
-                                                    <td><?= $rk->nm_dokter ?></td>
-                                                    <td><?= $rk->umur ?></td>
-                                                    <td><?= $rk->tgl_registrasi ?></td>
+
+                                                    <td><?= $riwayat_kunjungan[$rk]->no_rawat ?></td>
+                                                    <td><?= $riwayat_kunjungan[$rk]->tgl_registrasi ?></td>
+                                                    <td><?= $riwayat_kunjungan[$rk]->jam_reg ?></td>
+                                                    <td><?= $riwayat_kunjungan[$rk]->nm_dokter ?></td>
+                                                    <td><?= $riwayat_kunjungan[$rk]->nm_poli ?></td>
+                                                    <td><?= $riwayat_kunjungan[$rk]->umur ?></td>
+                                                    <td><?= $riwayat_kunjungan[$rk]->png_jawab ?></td>
                                                 </tr>
                                                 <?php
-
                                                 foreach ($rujukanInternalPoli  as $internalPoli) {
                                                     echo '<tr>';
-                                                    echo '<td>' . $rk->no_rawat . '<td>
-                                                        <td>' . $rk->tgl_registrasi . '<td>
+                                                    echo '<td>' . $riwayat_kunjungan[$rk]->no_rawat . '<td>
+                                                        <td>' . $riwayat_kunjungan[$rk]->tgl_registrasi . '<td>
                                                         <td>' . $internalPoli->kd_dokter . '<td>
                                                         <td>' . $internalPoli->nm_dokter . '<td>
-                                                        <td>' . $rk->umur . '<td>
+                                                        <td>' . $riwayat_kunjungan[$rk]->umur . '<td>
                                                         <td>' . $internalPoli->kd_poli . '<td>
                                                         <td>' . $internalPoli->nm_poli . '<td>
                                                         <td>' . $internalPoli->png_jawab . '<td>
@@ -130,18 +131,42 @@ $db = \Config\Database::connect() ?>
                                                 ?>
                                             <?php endif; ?>
                                             <?php
-                                            if ($rk->status_lanjut == "Ranap") {
-                                                $builder = $db->query("select dpjp_ranap.kd_dokter from dpjp_ranap where dpjp_ranap.no_rawat='" . $rk->no_rawat . "'");
+                                            $kddpjp = "";
+                                            $dpjp = "";
+                                            if ($riwayat_kunjungan[$rk]->status_lanjut == "Ranap") {
+                                                $builder = $db->query("select dpjp_ranap.kd_dokter from dpjp_ranap where dpjp_ranap.no_rawat='" . $riwayat_kunjungan[$rk]->no_rawat . "'");
                                                 $kddpjp = $builder->getResult();
-                                                var_dump($kddpjp);
-                                                if (!$kddpjp === "") {
-                                                    $builder = $db->query("select dokter.nm_dokter from dokter where dokter.kd_dokter='" . $kddpjp . "'");
+
+                                                if ($kddpjp == "") {
+                                                    $builder = $db->query("select dokter.nm_dokter from dokter where dokter.kd_dokter='" . $kddpjp[0]->kd_dokter . "'");
+                                                    $dpjp = $builder->getResult();
+                                                    $dpjp = $dpjp[0]->nm_dokter;
+                                                } else {
+                                                    $kddpjp = $riwayat_kunjungan[$rk]->kd_dokter;
+                                                    $dpjp = $riwayat_kunjungan[$rk]->nm_dokter;
                                                 }
+
+                                                // var_dump($dpjp[0]->nm_dokter);
+                                            }
+
+                                            $builder = $db->query("select kamar_inap.tgl_masuk, kamar_inap.jam_masuk,kamar_inap.kd_kamar,bangsal.nm_bangsal from kamar_inap inner join kamar on kamar_inap.kd_kamar=kamar.kd_kamar inner join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal where kamar_inap.no_rawat='" . $riwayat_kunjungan[$rk]->no_rawat . "'");
+                                            $ranap1 = $builder->getResult();
+                                            foreach ($ranap1 as $rp) {
+                                                echo '<tr>';
+                                                echo '
+                                                
+                                                <td>' . $riwayat_kunjungan[$rk]->no_rawat . '</td>
+                                                <td>' . $rp->tgl_masuk . '</td>
+                                                <td>' . $rp->jam_masuk . '</td>
+                                                <td>' . $dpjp . '</td>
+                                                <td>' . $rp->kd_kamar . ' ' . $rp->nm_bangsal . '</td>
+                                                <td>' . $riwayat_kunjungan[$rk]->umur . '</td>
+                                                <td>' . $riwayat_kunjungan[$rk]->png_jawab . '</td>
+                                                ';
+                                                echo '</tr>';
                                             }
                                             ?>
-
-                                        <?php endforeach; ?>
-
+                                        <?php endfor; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -419,7 +444,6 @@ $db = \Config\Database::connect() ?>
                                                         echo '</tbody>';
                                                         echo '</table>';
                                                     }
-
                                                     ?>
                                                     <!-- End tabel riwayat diagnosa -->
                                                 </td>
@@ -594,7 +618,7 @@ $db = \Config\Database::connect() ?>
                                                                                         </tr>';
                                                                                     }
 
-                                                                                    $biayaperawatan = (int) $rs2->biaya;
+                                                                                    // $biayaperawatan = (int) $rs2->biaya;
                                                                                     // var_dump($biayaperawatan);
                                                                                 }
                                                                             }
@@ -605,7 +629,7 @@ $db = \Config\Database::connect() ?>
                                                                     $builder = $db->query('select nama_pengurangan, (-1*besar_pengurangan) as jml_pengurangan from pengurangan_biaya where no_rawat="' . $pasienLaborat[$lab]->no_rawat . '" order by nama_pengurangan ');
                                                                     $diskon = $builder->getResult();
                                                                     $no = 1;
-                                                                    var_dump($biayaperawatan);
+                                                                    // var_dump($biayaperawatan);
                                                                     ?>
                                                                     <table class="table table-responsive-lg">
                                                                         <tr class=" table-info">
@@ -621,7 +645,7 @@ $db = \Config\Database::connect() ?>
                                                                             </tr>
                                                                             <tr>
                                                                                 <th colspan="2" class="text-center">Total Biaya</th>
-                                                                                <th class="text-right"><?= $biayaperawatan + (int) $ds->jml_pengurangan ?></th>
+                                                                                <th class="text-right"></th>
                                                                             </tr>
                                                                         <?php endforeach; ?>
                                                                     </table>
