@@ -6,75 +6,79 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="#">
+                        <form action="#" method="post">
                             <fieldset disabled>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-1  col-form-label-sm">Pasien</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm mx-3">JK</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-1 col-form-label-sm">Alamat</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm mx-2">G.D</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-1 col-form-label-sm">Agama</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm">Stts.Nikah</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm">Pendidikan</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-2 col-form-label-sm">Tempat & Tgl.lahir</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-2 col-form-label-sm">Nama Ibu</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-1">
-                                            <label for="colFormLabelSm" class="col-2 col-form-label-sm">Bahasa</label>
-                                            <div class="col-sm-3">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                            <label for="colFormLabelSm" class="col- col-form-label-sm">Cacat Fisik</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php foreach ($riwayat_ralan as $key => $value) : ?>
+                                        <table class="table table-bordered table-responsive-md table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td>No.RM</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->no_rkm_medis ?></td>
+                                                    <td>Nama Pasien</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->nm_pasien ?></td>
+                                                    <td>J.K</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->jk ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Alamat</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->alamatpj ?></td>
+                                                    <td>G.D</td>
+                                                    <td>:</td>
+                                                    <td>GD</td>
+                                                    <td>Nama Ibu Kandung</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->nm_ibu ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Agama</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->agama ?></td>
+                                                    <td>stts.Nikah</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->stts_nikah ?></td>
+                                                    <td>Pendidikan</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->pnd ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tempat & Tgl.Lahir</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->tmp_tgl_lahir ?></td>
+                                                    <td>Cacat Fisik</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->nama_cacat ?></td>
+                                                    <td>Bahasa</td>
+                                                    <td>:</td>
+                                                    <td><?= $value->nama_bahasa ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    <?php endforeach; ?>
                                 </div>
                             </fieldset>
                         </form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-inline" method="POST">
+                                    <div class="form-group mx-sm-1 mb-2">
+                                        <div class="form-group mr-sm-2 mb-2">
+
+                                        </div>
+                                        <input type="date" class="form-control form-control-sm" id="tgl_awal" name="tgl_awal">
+                                    </div>
+                                    <div class="form-group mr-sm-2 mb-2">
+                                        <input type="date" class="form-control form-control-sm" id="tgl_akhir" name="tgl_akhir">
+                                    </div>
+
+                                    <button class="btn btn-info mb-2 btn-sm" id="btn-riwayat"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <nav>
@@ -84,6 +88,7 @@
                         <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-sbar" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Riwayat S.B.A.R</button>
                         <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-diagnosa" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Riwayat Diagnosa</button>
                         <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-lab" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Riwayat Laborat</button>
+                        <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-rad" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Riwayat Radiologi</button>
                     </div>
                 </nav>
 
@@ -92,14 +97,13 @@
                     <div class="tab-pane fade show active" id="nav-kunjungan" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm">
-                                    <thead class="thead-light">
-                                        <tr>
+                                <table class="table table-bordered table-responsive-lg table-sm" id="tabel-kunjungan-ralan">
+                                    <thead class="bg-info">
+                                        <tr class="text-center">
                                             <th scope="col">No</th>
                                             <th scope="col">No.Rawat</th>
                                             <th scope="col">Tanggal</th>
                                             <th scope="col">Jam</th>
-                                            <th scope="col">Kd.Dokter</th>
                                             <th scope="col">Dokter Dituju/DPJP</th>
                                             <th scope="col">Umur</th>
                                             <th scope="col">Jenis Bayar</th>
@@ -114,61 +118,26 @@
                     <div class="tab-pane fade" id="nav-soap" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm">
-                                    <thead class="thead-light">
-                                        <tr>
+                                <table class="table table-bordered table-responsive-lg table-sm" id="tabel-soapie-ralan">
+                                    <thead class="bg-info">
+                                        <tr class="text-center">
                                             <th scope="col">Tgl.Reg</th>
                                             <th scope="col">No.Rawat</th>
                                             <th scope="col">Status</th>
-                                            <th scope="col" class="text-center">S.O.A.P.I.E</th>
+                                            <th scope="col">S.O.A.P.I.E</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>
-                                                <table class="table table-bordered table-responsive-lg table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">Tanggal</th>
-                                                            <th scope="col">Dokter/Paramedis</th>
-                                                            <th scope="col">Subjek</th>
-                                                            <th scope="col">Objek</th>
-                                                            <th scope="col">Asesmen</th>
-                                                            <th scope="col">Plan</th>
-                                                            <th scope="col">Instruksi</th>
-                                                            <th scope="col">Evaluasi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                     <!-- End Riwayat SOAPIE -->
                     <!-- Riwayat SBAR -->
-                    <div class="tab-pane fade" id="nav-sbar" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    <div class="tab-pane fade" id="nav-sbar" role="tabpanel" aria-labelledby="nav-contact-tab" id="tabel-sbar-ralan">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm">
-                                    <thead class="thead-light">
+                                <table class="table table-bordered table-responsive-lg table-sm" id="tabel-sbar-ralan">
+                                    <thead class="bg-info">
                                         <tr>
                                             <th scope="col">Tgl.Reg</th>
                                             <th scope="col">No.Rawat</th>
@@ -176,39 +145,6 @@
                                             <th scope="col" class="text-center">S.B.A.R</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>
-                                                <table class="table table-bordered table-responsive-lg table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">Tanggal</th>
-                                                            <th scope="col">Dokter/Paramedis</th>
-                                                            <th scope="col">Situation</th>
-                                                            <th scope="col">Background</th>
-                                                            <th scope="col">Asesment</th>
-                                                            <th scope="col">Recomendation</th>
-                                                            <th scope="col">Instruksi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -218,50 +154,14 @@
                     <div class="tab-pane fade" id="nav-diagnosa" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm">
-                                    <thead class="thead-light">
-                                        <tr>
+                                <table class="table table-bordered table-responsive-lg table-sm" id="tabel-diagnosa-ralan">
+                                    <thead class="bg-info">
+                                        <tr class="text-center">
                                             <th scope="col">Tgl.Reg</th>
                                             <th scope="col">No.Rawat</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col" class="text-center">Diagnosa</th>
+                                            <th scope="col">Diagnosa</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>
-                                                <table class="table table-bordered table-responsive-lg table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">Tanggal</th>
-                                                            <th scope="col">Dokter/Paramedis</th>
-                                                            <th scope="col">Subjek</th>
-                                                            <th scope="col">Objek</th>
-                                                            <th scope="col">Asesmen</th>
-                                                            <th scope="col">Plan</th>
-                                                            <th scope="col">Instruksi</th>
-                                                            <th scope="col">Evaluasi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -271,59 +171,162 @@
                     <div class="tab-pane fade" id="nav-lab" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-responsive-lg table-sm">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">Tgl.Reg</th>
-                                            <th scope="col">No.Rawat</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col" class="text-center">Diagnosa</th>
+                                <table class="table table-bordered table-responsive-lg table-sm" id="tabel-laborat-ralan">
+                                    <thead class="bg-info">
+                                        <tr class="text-center">
+                                            <th scope="col">No</th>
+                                            <th scope="col">Pemeriksaan</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>
-                                                <table class="table table-bordered table-responsive-lg table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">Tanggal</th>
-                                                            <th scope="col">Dokter/Paramedis</th>
-                                                            <th scope="col">Subjek</th>
-                                                            <th scope="col">Objek</th>
-                                                            <th scope="col">Asesmen</th>
-                                                            <th scope="col">Plan</th>
-                                                            <th scope="col">Instruksi</th>
-                                                            <th scope="col">Evaluasi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                     <!-- End Riwayat Laborat -->
+                    <!-- Riwayat Radiologi -->
+                    <div class="tab-pane fade show" id="nav-rad" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-responsive-lg table-bordered table-sm" id="tabel-radiologi-ralan">
+                                    <thead class="bg-info">
+                                        <tr class="text-center">
+                                            <td>No</td>
+                                            <td>Pemeriksaan</td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Riwayat Radiologi -->
                 </div>
             </div>
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
+<script>
+    const no_rawat = <?= json_encode($no_rawat) ?>;
+    // DataTable for Riwayat Kunjungan
+    let tableKunjungan = $('#tabel-kunjungan-ralan').DataTable({
+        searching: false,
+        paging: false,
+        info: false,
+        processing: true,
+        ajax: {
+            url: "<?= base_url('datapemeriksaan/tampilKunjungan/') ?>" + no_rawat,
+            method: 'POST',
+            data: function(data) {
+                data.tgl_awal = $('#tgl_awal').val();
+                data.tgl_akhir = $('#tgl_akhir').val();
+
+            }
+        },
+    });
+    // DataTable for Riwayat SOAPIE
+    let tableSoapie = $('#tabel-soapie-ralan').DataTable({
+        searching: false,
+        paging: false,
+        info: false,
+        processing: true,
+        ajax: {
+            url: "<?= base_url('datapemeriksaan/tampilsoapie/') ?>" + no_rawat,
+            method: 'POST',
+            data: function(data) {
+                data.tgl_awal = $('#tgl_awal').val();
+                data.tgl_akhir = $('#tgl_akhir').val();
+
+            }
+        },
+        createdRow: function(row, data) {
+            $('td', row).eq(0).addClass('text-nowrap');
+        }
+    });
+    //tabel riwayat SBAR
+    let tableSbar = $('#tabel-sbar-ralan').DataTable({
+        searching: false,
+        paging: false,
+        info: false,
+        processing: true,
+        ajax: {
+            url: "<?= base_url('datapemeriksaan/tampilsbar/') ?>" + no_rawat,
+            method: 'POST',
+            data: function(data) {
+                data.tgl_awal = $('#tgl_awal').val();
+                data.tgl_akhir = $('#tgl_akhir').val();
+
+            }
+        },
+        createdRow: function(row, data) {
+            $('td', row).eq(0).addClass('text-nowrap');
+        }
+    });
+    //tabel riwayat laborat
+    var tableLaborat = $('#tabel-laborat-ralan').DataTable({
+        searching: false,
+        paging: false,
+        info: false,
+        processing: true,
+        ajax: {
+            url: "<?= base_url('datapemeriksaan/tampillaborat/') ?>" + no_rawat,
+            method: 'POST',
+            data: function(data) {
+                data.tgl_awal = $('#tgl_awal').val();
+                data.tgl_akhir = $('#tgl_akhir').val();
+            }
+        },
+        createdRow: function(row, data) {
+            $('td', row).eq(0).addClass('text-nowrap');
+        }
+    });
+    //tabel riwayat diagnosa
+    let tableDiagnosa = $('#tabel-diagnosa-ralan').DataTable({
+        searching: false,
+        paging: false,
+        info: false,
+        processing: true,
+        ajax: {
+            url: "<?= base_url('datapemeriksaan/tampilDiagnosa/') ?>" + no_rawat,
+            method: 'POST',
+            data: function(data) {
+                data.tgl_awal = $('#tgl_awal').val();
+                data.tgl_akhir = $('#tgl_akhir').val();
+            }
+        },
+        createdRow: function(row, data) {
+            $('td', row).eq(0).addClass('text-nowrap');
+        }
+    });
+
+    //tabel riwayat radiologi
+    let tableRadiologi = $('#tabel-radiologi-ralan').DataTable({
+        searching: false,
+        paging: false,
+        info: false,
+        processing: true,
+        ajax: {
+            url: "<?= base_url('datapemeriksaan/tampilRadiologi/') ?>" + no_rawat,
+            method: 'POST',
+            data: function(data) {
+                data.tgl_awal = $('#tgl_awal').val();
+                data.tgl_akhir = $('#tgl_akhir').val();
+
+            }
+        },
+        createdRow: function(row, data) {
+            $('td', row).eq(0).addClass('text-nowrap');
+        }
+    });
+    $('#btn-riwayat').on('click', function() {
+        tableKunjungan.ajax.reload();
+        tableSoapie.ajax.reload();
+        tableSbar.ajax.reload();
+        tableDiagnosa.ajax.reload();
+        tableLaborat.ajax.reload();
+        tableRadiologi.ajax.reload();
+
+    })
+</script>
+
+
 <?= $this->endSection() ?>

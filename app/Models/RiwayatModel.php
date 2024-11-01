@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class RiwayatModel extends Model
 {
 
-    function RanapAjax($startDate = null, $endDate = null, $status_pulang = null, $limit = 0, $offset = 0, $search = '')
+    function RanapAjax($startDate = null, $endDate = null, $status_pulang = null, $limit = 0, $offset = 0, $search = "")
     {
 
 
@@ -19,7 +19,7 @@ class RiwayatModel extends Model
         $builder->join('pasien', 'reg_periksa.no_rkm_medis=pasien.no_rkm_medis', 'inner');
         $builder->join('dpjp_ranap', 'reg_periksa.no_rawat=dpjp_ranap.no_rawat', 'inner');
         $builder->join('dokter', 'dpjp_ranap.kd_dokter=dokter.kd_dokter', 'inner');
-        $builder->where('stts_pulang', $status_pulang);
+
 
 
 
@@ -40,12 +40,12 @@ class RiwayatModel extends Model
                 $builder->orLike('kamar_inap.stts_pulang', $arr_search[$i]);
             }
         }
-
+        $builder->where('stts_pulang', $status_pulang);
         $builder->limit($limit, $offset);
         return $builder->get()->getResult();
     }
 
-    public function getCountRanap($startDate = null, $endDate = null, $status_pulang = null, $search = '')
+    public function getCountRanap($startDate = null, $endDate = null, $status_pulang = null, $search = "")
     {
 
         $builder = $this->db->table('kamar_inap');
@@ -84,7 +84,7 @@ class RiwayatModel extends Model
         return $builder->countAllResults();
     }
 
-    function RalanAjax($keyword = null, $start = 0, $length = 0)
+    function RalanAjax($startDate = null, $endDate = null, $status_periksa = null, $limit = 0, $offset = 0, $search = "")
     {
         $builder = $this->db->table('reg_periksa');
         $builder->select('reg_periksa.no_rawat, reg_periksa.tgl_registrasi,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,dokter.nm_dokter,reg_periksa.status_poli,reg_periksa.stts');
@@ -93,24 +93,61 @@ class RiwayatModel extends Model
         $builder->join('poliklinik', 'reg_periksa.kd_poli=poliklinik.kd_poli');
         $builder->where('reg_periksa.status_lanjut', 'Ralan');
 
-        if ($keyword) {
-            $arr_keyword = explode(" ", $keyword);
+        if ($startDate && $endDate) {
+            $builder->where('reg_periksa.tgl_registrasi >=', $startDate);
+            $builder->where('reg_periksa.tgl_registrasi <=', $endDate);
+        }
+
+        if ($search) {
+            $arr_keyword = explode(" ", $search);
             for ($i = 0; $i < count($arr_keyword); $i++) {
                 $builder->orLike('reg_periksa.no_rawat', $arr_keyword[$i]);
                 $builder->orLike('reg_periksa.tgl_registrasi', $arr_keyword[$i]);
                 $builder->orlike('reg_periksa.no_rkm_medis', $arr_keyword[$i]);
                 $builder->orLike('pasien.nm_pasien', $arr_keyword[$i]);
-                $builder->orLike('poliklinik.nm_poli', $keyword[$i]);
-                $builder->orLike('dokter.nm_dokter', $keyword[$i]);
-                $builder->orLike('reg_periksa.status_poli', $keyword[$i]);
-                $builder->orLike('reg_periksa.stts', $keyword[$i]);
+                $builder->orLike('poliklinik.nm_poli', $arr_keyword[$i]);
+                $builder->orLike('dokter.nm_dokter', $arr_keyword[$i]);
+                $builder->orLike('reg_periksa.status_poli', $arr_keyword[$i]);
+                $builder->orLike('reg_periksa.stts', $arr_keyword[$i]);
             }
         }
+        $builder->where("reg_periksa.stts", $status_periksa);
+        $builder->limit($limit, $offset);
+        return $builder->orderBy('reg_periksa.no_rawat')->get()->getResult();
+    }
+    public function getCountRalan($startDate = null, $endDate = null, $status_periksa = null, $search = "")
+    {
 
-        if ($start != 0 or $length != 0) {
-            $builder->limit($length, $start);
+        $builder = $this->db->table('reg_periksa');
+        $builder->select('reg_periksa.no_rawat, reg_periksa.tgl_registrasi,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,dokter.nm_dokter,reg_periksa.status_poli,reg_periksa.stts');
+        $builder->join('pasien', 'reg_periksa.no_rkm_medis=pasien.no_rkm_medis', 'inner');
+        $builder->join('dokter', 'reg_periksa.kd_dokter=dokter.kd_dokter', 'inner');
+        $builder->join('poliklinik', 'reg_periksa.kd_poli=poliklinik.kd_poli');
+        $builder->where('reg_periksa.status_lanjut', 'Ralan');
+
+
+
+
+        if ($startDate && $endDate) {
+            $builder->where('reg_periksa.tgl_registrasi >=', $startDate);
+            $builder->where('reg_periksa.tgl_registrasi <=', $endDate);
         }
 
-        return $builder->orderBy('reg_periksa.no_rawat')->get()->getResult();
+        if ($search) {
+            $arr_keyword = explode(" ", $search);
+            for ($i = 0; $i < count($arr_keyword); $i++) {
+                $builder->orLike('reg_periksa.no_rawat', $arr_keyword[$i]);
+                $builder->orLike('reg_periksa.tgl_registrasi', $arr_keyword[$i]);
+                $builder->orlike('reg_periksa.no_rkm_medis', $arr_keyword[$i]);
+                $builder->orLike('pasien.nm_pasien', $arr_keyword[$i]);
+                $builder->orLike('poliklinik.nm_poli', $arr_keyword[$i]);
+                $builder->orLike('dokter.nm_dokter', $arr_keyword[$i]);
+                $builder->orLike('reg_periksa.status_poli', $arr_keyword[$i]);
+                $builder->orLike('reg_periksa.stts', $arr_keyword[$i]);
+            }
+        }
+        $builder->where("reg_periksa.stts", $status_periksa);
+
+        return $builder->countAllResults();
     }
 }

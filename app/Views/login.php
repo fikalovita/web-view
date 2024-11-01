@@ -26,17 +26,18 @@
                     <h4><b>RUMAH SAKIT ISLAM LUMAJANG</b></h4>
                 </div>
                 <p class="login-box-msg">Sign in to start your session</p>
-                <form action="../../index3.html" method="post">
+                <?php echo session()->getFlashdata('error'); ?>
+                <form action="<?= base_url('auth/login') ?>" method="post">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" placeholder="Username" name="user">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <i class="fas fa-user"></i>
                             </div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -46,15 +47,11 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
                             </div>
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-info btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
